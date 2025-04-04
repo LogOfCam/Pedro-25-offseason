@@ -26,6 +26,13 @@ public class Clipper extends Subsystem {
 
     private final PIDFController controller = new PIDFController(kP, kI, kD, (pos) -> kF, threshold);
 
+    public static double increment = 20;
+    public static boolean zero = false;
+
+    public Command up() { return new RunToPosition(motor, motor.getCurrentPosition() + increment, controller, this); }
+
+    public Command down() { return new RunToPosition(motor, motor.getCurrentPosition() - increment, controller, this); }
+
     public Command getToZero() {
         return new RunToPosition(motor, 0.0, controller, this);
     }
@@ -34,7 +41,6 @@ public class Clipper extends Subsystem {
         return new RunToPosition(motor, 300.0, controller, this);
     }
 
-    public static boolean zero = false;
 
     @Override
     public void initialize() {
