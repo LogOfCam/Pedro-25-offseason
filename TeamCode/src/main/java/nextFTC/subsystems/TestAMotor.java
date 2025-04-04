@@ -1,20 +1,17 @@
 package nextFTC.subsystems;
 
-import androidx.annotation.NonNull;
-
 import com.acmerobotics.dashboard.config.Config;
 import com.rowanmcalpin.nextftc.core.Subsystem;
 import com.rowanmcalpin.nextftc.core.command.Command;
 import com.rowanmcalpin.nextftc.core.control.controllers.PIDFController;
 import com.rowanmcalpin.nextftc.ftc.OpModeData;
-import com.rowanmcalpin.nextftc.ftc.hardware.controllables.HoldPosition;
 import com.rowanmcalpin.nextftc.ftc.hardware.controllables.MotorEx;
 import com.rowanmcalpin.nextftc.ftc.hardware.controllables.RunToPosition;
 
 @Config
-public class Belt extends Subsystem {
+public class TestAMotor extends Subsystem {
 
-    public static final Belt INSTANCE = new Belt();
+    public static final TestAMotor INSTANCE = new TestAMotor();
 
     public static double kP = 0.0;
     public static double kI = 0.0;
@@ -29,11 +26,15 @@ public class Belt extends Subsystem {
 
     private final PIDFController controller = new PIDFController(kP, kI, kD, (pos) -> kF, threshold);
 
-    public static double increment = 20;
+    public static boolean zero = false;
 
-    public Command up() { return new RunToPosition(motor, motor.getCurrentPosition() + increment, controller, this);}
+    public Command getToZero() {
+        return new RunToPosition(motor, 0.0, controller, this);
+    }
 
-    public Command down() { return new RunToPosition(motor, motor.getCurrentPosition() - increment, controller, this);}
+    public Command getTo1000() {
+        return new RunToPosition(motor, 300.0, controller, this);
+    }
 
     @Override
     public void initialize() {
@@ -50,6 +51,12 @@ public class Belt extends Subsystem {
         controller.setKI(kI);
         controller.setKD(kD);
         controller.setSetPointTolerance(threshold);
+
+        if (zero) {
+            getTo1000().invoke();
+        } else {
+            getToZero().invoke();
+        }
 
         OpModeData.telemetry.addData("OuttakeSlide Position", motor.getCurrentPosition());
         OpModeData.telemetry.addData("OuttakeSlide Target", controller.getTarget());
