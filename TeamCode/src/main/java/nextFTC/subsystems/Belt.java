@@ -51,8 +51,8 @@ public class Belt extends Subsystem {
         controller.setKD(kD);
         controller.setSetPointTolerance(threshold);
 
-        OpModeData.telemetry.addData("OuttakeSlide Position", motor.getCurrentPosition());
-        OpModeData.telemetry.addData("OuttakeSlide Target", controller.getTarget());
+        OpModeData.telemetry.addData("belt Position", motor.getCurrentPosition());
+        OpModeData.telemetry.addData("belt Target", controller.getTarget());
     }
 
     public void resetEncoder() {

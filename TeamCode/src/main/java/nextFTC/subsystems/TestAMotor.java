@@ -58,8 +58,8 @@ public class TestAMotor extends Subsystem {
             getToZero().invoke();
         }
 
-        OpModeData.telemetry.addData("OuttakeSlide Position", motor.getCurrentPosition());
-        OpModeData.telemetry.addData("OuttakeSlide Target", controller.getTarget());
+        OpModeData.telemetry.addData("belt Position", motor.getCurrentPosition());
+        OpModeData.telemetry.addData("belt Target", controller.getTarget());
     }
 
     public void resetEncoder() {
