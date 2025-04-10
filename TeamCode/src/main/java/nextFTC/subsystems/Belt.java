@@ -16,11 +16,10 @@ public class Belt extends Subsystem {
 
     public static final Belt INSTANCE = new Belt();
 
-    public static double kP = 0.0;
+    public static double kP = 0.009;
     public static double kI = 0.0;
-    public static double kD = 0.0;
+    public static double kD = 0.001;
     public static double kF = 0.0;
-    public static double target = 0.0;
     public static double threshold = 10;
 
     public String name = "Belt";

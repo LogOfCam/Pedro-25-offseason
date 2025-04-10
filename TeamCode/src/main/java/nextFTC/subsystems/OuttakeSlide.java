@@ -10,6 +10,7 @@ import com.rowanmcalpin.nextftc.ftc.OpModeData;
 import com.rowanmcalpin.nextftc.ftc.hardware.controllables.HoldPosition;
 import com.rowanmcalpin.nextftc.ftc.hardware.controllables.MotorEx;
 import com.rowanmcalpin.nextftc.ftc.hardware.controllables.RunToPosition;
+import com.rowanmcalpin.nextftc.ftc.hardware.controllables.SetPower;
 
 @Config
 public class OuttakeSlide extends Subsystem {
@@ -63,5 +64,11 @@ public class OuttakeSlide extends Subsystem {
 
     public void resetEncoder() {
         motor.resetEncoder();
+    }
+
+    public Command move(float power) {
+        return new SetPower(motor,
+                power,
+                this);
     }
 }

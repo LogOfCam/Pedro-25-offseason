@@ -8,6 +8,7 @@ import com.rowanmcalpin.nextftc.core.command.utility.InstantCommand;
 import com.rowanmcalpin.nextftc.core.command.utility.conditionals.PassiveConditionalCommand;
 import com.rowanmcalpin.nextftc.ftc.OpModeData;
 import com.rowanmcalpin.nextftc.ftc.hardware.ServoToPosition;
+import com.rowanmcalpin.nextftc.ftc.hardware.controllables.SetPower;
 
 public class IntakeSlide extends Subsystem {
     public static final IntakeSlide INSTANCE = new IntakeSlide();

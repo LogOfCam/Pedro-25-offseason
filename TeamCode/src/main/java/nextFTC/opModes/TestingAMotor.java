@@ -24,6 +24,9 @@ public class TestingAMotor extends NextFTCOpMode {
 
         gamepadManager.getGamepad2().getA().setPressedCommand(TestAMotor.INSTANCE::getTo1000);
         gamepadManager.getGamepad2().getB().setPressedCommand(TestAMotor.INSTANCE::getToZero);
+
+        TestAMotor.INSTANCE.resetEncoder();
+
     }
 
     @Override

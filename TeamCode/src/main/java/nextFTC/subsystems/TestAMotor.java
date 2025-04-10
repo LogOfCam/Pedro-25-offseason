@@ -15,7 +15,7 @@ public class TestAMotor extends Subsystem {
 
     public static double kP = 0.0;
     public static double kI = 0.0;
-    public static double kD = 0.0;
+    public static double kD = 0.005;
     public static double kF = 0.0;
     public static double target = 0.0;
     public static double threshold = 10;

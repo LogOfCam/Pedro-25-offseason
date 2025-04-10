@@ -40,8 +40,12 @@ public class TestAuto extends PedroOpMode {
         IntakeArm.INSTANCE.resetEncoder();
         OuttakeSlide.INSTANCE.resetEncoder();
 
+
+
         IntakeClaw.INSTANCE.close().invoke();
         OuttakeClaw.INSTANCE.close().invoke();
+
+
 
         OpModeData.telemetry = telemetry;
     }
