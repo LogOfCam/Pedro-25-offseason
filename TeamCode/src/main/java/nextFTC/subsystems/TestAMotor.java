@@ -20,7 +20,7 @@ public class TestAMotor extends Subsystem {
     public static double target = 0.0;
     public static double threshold = 10;
 
-    public String name = "Belt";
+    public String name = "IntakeArm";
 
     private MotorEx motor;
 
@@ -33,7 +33,7 @@ public class TestAMotor extends Subsystem {
     }
 
     public Command getTo1000() {
-        return new RunToPosition(motor, 300.0, controller, this);
+        return new RunToPosition(motor, 400.0, controller, this);
     }
 
     @Override
@@ -58,8 +58,8 @@ public class TestAMotor extends Subsystem {
             getToZero().invoke();
         }
 
-        OpModeData.telemetry.addData("belt Position", motor.getCurrentPosition());
-        OpModeData.telemetry.addData("belt Target", controller.getTarget());
+        OpModeData.telemetry.addData("IntakeArm Position", motor.getCurrentPosition());
+        OpModeData.telemetry.addData("IntakeArm Target", controller.getTarget());
     }
 
     public void resetEncoder() {
