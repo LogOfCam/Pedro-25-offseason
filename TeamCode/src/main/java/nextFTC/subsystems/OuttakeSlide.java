@@ -12,6 +12,8 @@ import com.rowanmcalpin.nextftc.ftc.hardware.controllables.MotorEx;
 import com.rowanmcalpin.nextftc.ftc.hardware.controllables.RunToPosition;
 import com.rowanmcalpin.nextftc.ftc.hardware.controllables.SetPower;
 
+import org.firstinspires.ftc.robotcore.external.navigation.CurrentUnit;
+
 @Config
 public class OuttakeSlide extends Subsystem {
 
@@ -60,6 +62,7 @@ public class OuttakeSlide extends Subsystem {
 
         OpModeData.telemetry.addData("OuttakeSlide Position", motor.getCurrentPosition());
         OpModeData.telemetry.addData("OuttakeSlide Target", controller.getTarget());
+        OpModeData.telemetry.addData("OuttakeSlide Current(A):",motor.getMotor().getCurrent(CurrentUnit.MILLIAMPS));
     }
 
     public void resetEncoder() {
