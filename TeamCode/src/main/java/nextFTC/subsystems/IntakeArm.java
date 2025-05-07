@@ -16,10 +16,10 @@ import com.rowanmcalpin.nextftc.ftc.hardware.controllables.RunToPosition;
 public class IntakeArm extends Subsystem {
 
     public static final IntakeArm INSTANCE = new IntakeArm();
-    public static double kP = 0.002; //0.01
+    public static double kP = 0.006; //0.01
     public static double kI = 0.0;
-    public static double kD = 0.007; //0.00015
-    public static double kF = 0.004;
+    public static double kD = 0.03; //0.00015
+    public static double kF = 0.035;
     public static double target = 0.0;
     public static double threshold = 10;
 

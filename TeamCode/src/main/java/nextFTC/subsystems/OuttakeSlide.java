@@ -59,6 +59,7 @@ public class OuttakeSlide extends Subsystem {
         controller.setKI(kI);
         controller.setKD(kD);
         controller.setSetPointTolerance(threshold);
+        
 
         OpModeData.telemetry.addData("OuttakeSlide Position", motor.getCurrentPosition());
         OpModeData.telemetry.addData("OuttakeSlide Target", controller.getTarget());

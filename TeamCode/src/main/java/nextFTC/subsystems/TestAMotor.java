@@ -33,13 +33,14 @@ public class TestAMotor extends Subsystem {
     }
 
     public Command getTo1000() {
-        return new RunToPosition(motor, 400.0, controller, this);
+        return new RunToPosition(motor, 100.0, controller, this);
     }
 
     @Override
     public void initialize() {
         motor = new MotorEx(name);
     }
+
 
 //    @NonNull
 //    @Override
