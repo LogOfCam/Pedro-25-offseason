@@ -21,6 +21,13 @@ public class BucketRoutines {
         );
     }
 
+    public static Command bucketToSpecimen() {
+        return new SequentialGroup(
+                new FollowPath(TrajectoryBuilder.bucketToSpecimen1, false, 0.85),
+                IntakeClaw.INSTANCE.open()
+        );
+    }
+
     public static Command testLift() {
         return new SequentialGroup(
                 OuttakeSlide.INSTANCE.highChamber(),

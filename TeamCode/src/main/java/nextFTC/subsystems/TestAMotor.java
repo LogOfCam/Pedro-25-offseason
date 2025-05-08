@@ -13,10 +13,10 @@ public class TestAMotor extends Subsystem {
 
     public static final TestAMotor INSTANCE = new TestAMotor();
 
-    public static double kP = 0.0;
+    public static double kP = 0.003; //0.01
     public static double kI = 0.0;
-    public static double kD = 0.005;
-    public static double kF = 0.0;
+    public static double kD = 0.03; //0.00015
+    public static double kF = 0.035;
     public static double target = 0.0;
     public static double threshold = 10;
 
@@ -33,7 +33,7 @@ public class TestAMotor extends Subsystem {
     }
 
     public Command getTo1000() {
-        return new RunToPosition(motor, 100.0, controller, this);
+        return new RunToPosition(motor, 400.0, controller, this);
     }
 
     @Override

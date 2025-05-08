@@ -3,7 +3,6 @@ package nextFTC.subsystems;
 import androidx.annotation.NonNull;
 
 import com.acmerobotics.dashboard.config.Config;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.rowanmcalpin.nextftc.core.Subsystem;
 import com.rowanmcalpin.nextftc.core.command.Command;
 import com.rowanmcalpin.nextftc.core.control.controllers.PIDFController;
@@ -11,20 +10,26 @@ import com.rowanmcalpin.nextftc.ftc.OpModeData;
 import com.rowanmcalpin.nextftc.ftc.hardware.controllables.HoldPosition;
 import com.rowanmcalpin.nextftc.ftc.hardware.controllables.MotorEx;
 import com.rowanmcalpin.nextftc.ftc.hardware.controllables.RunToPosition;
+import com.rowanmcalpin.nextftc.ftc.hardware.controllables.SetPower;
+
+import org.firstinspires.ftc.robotcore.external.navigation.CurrentUnit;
 
 @Config
-public class IntakeArm extends Subsystem {
+public class IntakeArmFix extends Subsystem {
 
-    public static final IntakeArm INSTANCE = new IntakeArm();
-    public static double kP = 0.006; //0.01
+    public static final IntakeArmFix INSTANCE = new IntakeArmFix();
+
+    public static double kP = 0.01;
     public static double kI = 0.0;
-    public static double kD = 0.03; //0.00015
-    public static double kF = 0.035;
+    public static double kD = 0.00015;
+    public static double kF = 0.1;
     public static double target = 0.0;
     public static double threshold = 10;
 
     public String name = "IntakeArm";
+
     private MotorEx motor;
+
     private final PIDFController controller = new PIDFController(kP, kI, kD, (pos) -> kF, threshold);
 
     public double pickupPosition = 400;
@@ -45,12 +50,11 @@ public class IntakeArm extends Subsystem {
     @Override
     public void initialize() {
         motor = new MotorEx(name);
-        motor.setDirection(DcMotorSimple.Direction.REVERSE);
     }
 
     @NonNull
     @Override
-    public Command getDefaultCommand() { return new HoldPosition(motor, controller, this); }
+    public Command getDefaultCommand() { return new HoldPosition(motor, controller, this);}
 
     @Override
     public void periodic() {
@@ -58,12 +62,20 @@ public class IntakeArm extends Subsystem {
         controller.setKI(kI);
         controller.setKD(kD);
         controller.setSetPointTolerance(threshold);
+        
 
-        OpModeData.telemetry.addData("IntakeArm Position", motor.getCurrentPosition());
-        OpModeData.telemetry.addData("IntakeArm Target", controller.getTarget());
+        OpModeData.telemetry.addData("OuttakeSlide Position", motor.getCurrentPosition());
+        OpModeData.telemetry.addData("OuttakeSlide Target", controller.getTarget());
+        OpModeData.telemetry.addData("OuttakeSlide Current(A):",motor.getMotor().getCurrent(CurrentUnit.MILLIAMPS));
     }
 
     public void resetEncoder() {
         motor.resetEncoder();
+    }
+
+    public Command move(float power) {
+        return new SetPower(motor,
+                power,
+                this);
     }
 }
