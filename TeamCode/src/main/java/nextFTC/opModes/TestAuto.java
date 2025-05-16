@@ -1,7 +1,6 @@
 package nextFTC.opModes;
 
 import com.pedropathing.follower.Follower;
-import com.pedropathing.util.Constants;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.rowanmcalpin.nextftc.core.command.CommandManager;
 import com.rowanmcalpin.nextftc.core.command.groups.SequentialGroup;
@@ -65,16 +64,16 @@ public class TestAuto extends PedroOpMode {
     public void onStartButtonPressed() {
         TrajectoryBuilder.buildBucketPaths(follower);
 
-        CommandManager.INSTANCE.scheduleCommand(
-                new SequentialGroup(
+        //CommandManager.INSTANCE.scheduleCommand(
+                //new SequentialGroup(
 
-                        BucketRoutines.testLift()
+                        //BucketRoutines.testLift()
                         //BucketRoutines.secondSample(),
                         //BucketRoutines.thirdSample(),
                         //BucketRoutines.fourthSample(),
                         //new Delay(1.0),
                         //BucketRoutines.park()
-                )
-        );
+                //)
+        //);
     }
 }

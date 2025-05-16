@@ -13,10 +13,9 @@ import com.rowanmcalpin.nextftc.ftc.OpModeData;
 import com.rowanmcalpin.nextftc.ftc.driving.MecanumDriverControlled;
 import com.rowanmcalpin.nextftc.ftc.hardware.controllables.MotorEx;
 import com.rowanmcalpin.nextftc.pedro.PedroOpMode;
-
 import nextFTC.subsystems.Belt;
 import nextFTC.subsystems.Clipper;
-import nextFTC.subsystems.IntakeArmFix;
+import nextFTC.subsystems.IntakeArm;
 import nextFTC.subsystems.IntakeClaw;
 import nextFTC.subsystems.IntakeSlide;
 import nextFTC.subsystems.OuttakeClaw;
@@ -27,7 +26,7 @@ public class Teleop extends PedroOpMode {
     public Teleop() {
         super(IntakeClaw.INSTANCE,
                 IntakeSlide.INSTANCE,
-                IntakeArmFix.INSTANCE,
+                IntakeArm.INSTANCE,
                 OuttakeSlide.INSTANCE,
                 OuttakeClaw.INSTANCE,
                 Belt.INSTANCE,
@@ -99,7 +98,7 @@ public class Teleop extends PedroOpMode {
             driveMotor.getMotor().setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         }
 
-        IntakeArmFix.INSTANCE.resetEncoder();
+        IntakeArm.INSTANCE.resetEncoder();
         OuttakeSlide.INSTANCE.resetEncoder();
         Belt.INSTANCE.resetEncoder();
         Clipper.INSTANCE.resetEncoder();
@@ -126,9 +125,9 @@ public class Teleop extends PedroOpMode {
         gamepadManager.getGamepad1().getLeftBumper().setReleasedCommand(OuttakeClaw.INSTANCE::toggle); // When pressed it triggers it so say open
         gamepadManager.getGamepad1().getLeftBumper().setPressedCommand(OuttakeClaw.INSTANCE::toggle);  // Then when released it should close it
 
-        gamepadManager.getGamepad1().getA().setPressedCommand(IntakeArmFix.INSTANCE::clip);
-        gamepadManager.getGamepad1().getB().setPressedCommand(IntakeArmFix.INSTANCE::transfer);
-        gamepadManager.getGamepad1().getY().setPressedCommand(IntakeArmFix.INSTANCE::pickup);
+        gamepadManager.getGamepad1().getA().setPressedCommand(IntakeArm.INSTANCE::clip);
+        gamepadManager.getGamepad1().getB().setPressedCommand(IntakeArm.INSTANCE::transfer);
+        gamepadManager.getGamepad1().getY().setPressedCommand(IntakeArm.INSTANCE::pickup);
 
         gamepadManager.getGamepad1().getDpadUp().setPressedCommand(OuttakeSlide.INSTANCE::highChamber);
         gamepadManager.getGamepad1().getDpadDown().setPressedCommand(OuttakeSlide.INSTANCE::transfer);

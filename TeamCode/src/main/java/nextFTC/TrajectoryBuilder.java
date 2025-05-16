@@ -10,13 +10,12 @@ import com.rowanmcalpin.nextftc.pedro.FollowerNotInitializedException;
 
 public class TrajectoryBuilder {
 
-    public static final Pose startPose = new Pose(7.5, 112.5, Math.toRadians(270));
-    public static final Pose placePosition = new Pose(14, 127, Math.toRadians(325));
-    public static final Point random = new Point(14, 127);
-    public static final Pose A = new Pose(14, 127, Math.toRadians(325));
+    public static final Pose startPose = new Pose(8.5, 87.5, Math.toRadians(0));
+    public static final Pose middlePosition = new Pose(31, 36, Math.toRadians(180));
+    public static final Pose endPosition = new Pose(33.5, 100, Math.toRadians(0));
 
 
-    public static PathChain startToBucket, bucketToSpecimen1;
+    public static PathChain beginingToMiddle, middleToEnd;
 
     public static void buildBucketPaths(Follower follower) {
         if (follower == null) {
@@ -27,12 +26,18 @@ public class TrajectoryBuilder {
             }
         }
 
-        startToBucket = follower.pathBuilder()
+        beginingToMiddle = follower.pathBuilder()
                 .addPath(
                         new BezierLine(
-                                new Point(startPose), new Point(placePosition)
+                                new Point(startPose), new Point(middlePosition)
                         )
-                ).setLinearHeadingInterpolation(startPose.getHeading(), placePosition.getHeading()).build();
+                ).setLinearHeadingInterpolation(startPose.getHeading(), middlePosition.getHeading()).build();
 
+        middleToEnd = follower.pathBuilder()
+                .addPath(
+                        new BezierLine(
+                                new Point(middlePosition), new Point(endPosition)
+                        )
+                ).setLinearHeadingInterpolation(middlePosition.getHeading(), endPosition.getHeading()).build();
     }
 }

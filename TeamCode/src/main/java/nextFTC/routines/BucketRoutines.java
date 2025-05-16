@@ -16,25 +16,25 @@ public class BucketRoutines {
 
     public static Command firstSample() {
         return new ParallelGroup(
-                new FollowPath(TrajectoryBuilder.startToBucket, true, 0.5),
-                MechanismRoutines.intakeOut()
+                new FollowPath(TrajectoryBuilder.beginingToMiddle, true, 0.5)
+                //MechanismRoutines.intakeOut()
         );
     }
 
     public static Command bucketToSpecimen() {
         return new SequentialGroup(
-                new FollowPath(TrajectoryBuilder.bucketToSpecimen1, false, 0.85),
-                IntakeClaw.INSTANCE.open()
+                new FollowPath(TrajectoryBuilder.middleToEnd, true, 0.85)
+                //IntakeClaw.INSTANCE.open()
         );
     }
 
-    public static Command testLift() {
-        return new SequentialGroup(
-                OuttakeSlide.INSTANCE.highChamber(),
-                new Delay(1),
-                IntakeClaw.INSTANCE.open(),
-                //new Delay(1),
-                OuttakeSlide.INSTANCE.transfer()
-        );
-    }
+//    public static Command testLift() {
+//        return new SequentialGroup(
+//                OuttakeSlide.INSTANCE.highChamber(),
+//                new Delay(1),
+//                IntakeClaw.INSTANCE.open(),
+//                //new Delay(1),
+//                OuttakeSlide.INSTANCE.transfer()
+//        );
+//    }
 }
