@@ -15,7 +15,7 @@ public class TrajectoryBuilder {
     public static final Pose endPosition = new Pose(33.5, 100, Math.toRadians(0));
 
 
-    public static PathChain beginingToMiddle, middleToEnd;
+    public static PathChain beginningToMiddle, middleToEnd;
 
     public static void buildBucketPaths(Follower follower) {
         if (follower == null) {
@@ -26,7 +26,7 @@ public class TrajectoryBuilder {
             }
         }
 
-        beginingToMiddle = follower.pathBuilder()
+        beginningToMiddle = follower.pathBuilder()
                 .addPath(
                         new BezierLine(
                                 new Point(startPose), new Point(middlePosition)

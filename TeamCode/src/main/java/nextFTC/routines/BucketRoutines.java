@@ -16,7 +16,7 @@ public class BucketRoutines {
 
     public static Command firstSample() {
         return new ParallelGroup(
-                new FollowPath(TrajectoryBuilder.beginingToMiddle, true, 0.5)
+                new FollowPath(TrajectoryBuilder.beginningToMiddle, true, 0.5)
                 //MechanismRoutines.intakeOut()
         );
     }
