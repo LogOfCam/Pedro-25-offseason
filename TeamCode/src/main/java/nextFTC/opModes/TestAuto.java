@@ -9,8 +9,11 @@ import com.rowanmcalpin.nextftc.pedro.PedroOpMode;
 
 import nextFTC.TrajectoryBuilder;
 import nextFTC.routines.BucketRoutines;
+import nextFTC.subsystems.Belt;
+import nextFTC.subsystems.Clipper;
 import nextFTC.subsystems.IntakeArm;
 import nextFTC.subsystems.IntakeClaw;
+import nextFTC.subsystems.IntakeSlide;
 import nextFTC.subsystems.OuttakeClaw;
 import nextFTC.subsystems.OuttakeSlide;
 import pedroPathing.constants.FConstants;
@@ -22,7 +25,13 @@ public class TestAuto extends PedroOpMode {
     private final LConstants lConstants = new LConstants();
 
     public TestAuto(){
-        super(IntakeClaw.INSTANCE, IntakeArm.INSTANCE, OuttakeSlide.INSTANCE, OuttakeClaw.INSTANCE);
+        super(IntakeClaw.INSTANCE,
+                IntakeSlide.INSTANCE,
+                IntakeArm.INSTANCE,
+                OuttakeSlide.INSTANCE,
+                OuttakeClaw.INSTANCE,
+                Belt.INSTANCE,
+                Clipper.INSTANCE);
     }
 
     @Override
@@ -39,12 +48,8 @@ public class TestAuto extends PedroOpMode {
         IntakeArm.INSTANCE.resetEncoder();
         OuttakeSlide.INSTANCE.resetEncoder();
 
-
-
         IntakeClaw.INSTANCE.close().invoke();
         OuttakeClaw.INSTANCE.close().invoke();
-
-
 
         OpModeData.telemetry = telemetry;
     }
@@ -64,16 +69,12 @@ public class TestAuto extends PedroOpMode {
     public void onStartButtonPressed() {
         TrajectoryBuilder.buildBucketPaths(follower);
 
-        //CommandManager.INSTANCE.scheduleCommand(
-                //new SequentialGroup(
-
-                        //BucketRoutines.testLift()
-                        //BucketRoutines.secondSample(),
-                        //BucketRoutines.thirdSample(),
-                        //BucketRoutines.fourthSample(),
-                        //new Delay(1.0),
-                        //BucketRoutines.park()
-                //)
-        //);
+        CommandManager.INSTANCE.scheduleCommand(
+                new SequentialGroup(
+                        BucketRoutines.testLift(),
+                        BucketRoutines.firstSample(),
+                        BucketRoutines.bucketToSpecimen()
+                )
+        );
     }
 }

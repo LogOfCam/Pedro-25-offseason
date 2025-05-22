@@ -28,13 +28,13 @@ public class BucketRoutines {
         );
     }
 
-//    public static Command testLift() {
-//        return new SequentialGroup(
-//                OuttakeSlide.INSTANCE.highChamber(),
-//                new Delay(1),
-//                IntakeClaw.INSTANCE.open(),
-//                //new Delay(1),
-//                OuttakeSlide.INSTANCE.transfer()
-//        );
-//    }
+    public static Command testLift() {
+        return new SequentialGroup(
+                OuttakeSlide.INSTANCE.highChamber(),
+                new Delay(1),
+                IntakeClaw.INSTANCE.open(),
+                //new Delay(1),
+                OuttakeSlide.INSTANCE.transfer()
+        );
+    }
 }
