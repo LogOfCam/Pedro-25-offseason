@@ -16,14 +16,16 @@ public class BucketRoutines {
 
     public static Command firstSample() {
         return new ParallelGroup(
-                new FollowPath(TrajectoryBuilder.beginningToMiddle, true, 0.5)
+                new FollowPath(TrajectoryBuilder.beginningToMiddle, true, 1.0)
                 //MechanismRoutines.intakeOut()
         );
     }
 
     public static Command bucketToSpecimen() {
         return new SequentialGroup(
-                new FollowPath(TrajectoryBuilder.middleToEnd, true, 0.85)
+                new Delay(3),
+                new FollowPath(TrajectoryBuilder.middleToEnd, true, 1.0),
+                new Delay(3)
                 //IntakeClaw.INSTANCE.open()
         );
     }
