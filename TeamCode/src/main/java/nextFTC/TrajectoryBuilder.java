@@ -11,8 +11,8 @@ import com.rowanmcalpin.nextftc.pedro.FollowerNotInitializedException;
 public class TrajectoryBuilder {
 
     public static final Pose startPose = new Pose(8.5, 87.5, Math.toRadians(0));
-    public static final Pose middlePosition = new Pose(31, 36, Math.toRadians(180));
-    public static final Pose endPosition = new Pose(33.5, 100, Math.toRadians(360));
+    public static final Pose middlePosition = new Pose(31, 36, Math.toRadians(0));
+    public static final Pose endPosition = new Pose(33.5, 100, Math.toRadians(0));
 
 
     public static PathChain beginningToMiddle, middleToEnd;
@@ -31,13 +31,13 @@ public class TrajectoryBuilder {
                         new BezierLine(
                                 new Point(startPose), new Point(middlePosition)
                         )
-                ).setLinearHeadingInterpolation(startPose.getHeading(), middlePosition.getHeading()).build();
+                ).setConstantHeadingInterpolation(startPose.getHeading()).build();
 
         middleToEnd = follower.pathBuilder()
                 .addPath(
                         new BezierLine(
                                 new Point(middlePosition), new Point(endPosition)
                         )
-                ).setLinearHeadingInterpolation(middlePosition.getHeading(), endPosition.getHeading()).build();
+                ).setConstantHeadingInterpolation(middlePosition.getHeading()).build();
     }
 }

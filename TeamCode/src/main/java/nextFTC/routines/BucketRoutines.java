@@ -23,9 +23,9 @@ public class BucketRoutines {
 
     public static Command bucketToSpecimen() {
         return new SequentialGroup(
-                new Delay(3),
-                new FollowPath(TrajectoryBuilder.middleToEnd, true, 1.0),
-                new Delay(3)
+               //new Delay(3),
+                new FollowPath(TrajectoryBuilder.middleToEnd, true, 1.0)
+                //new Delay(3)
                 //IntakeClaw.INSTANCE.open()
         );
     }
