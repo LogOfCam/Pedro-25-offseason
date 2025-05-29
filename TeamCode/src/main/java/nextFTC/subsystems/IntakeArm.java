@@ -34,7 +34,8 @@ public class IntakeArm extends Subsystem {
 
     public double pickupPosition = 400;
     public double transferPosition = -20;
-    public double clip = -300;
+    public double clip = -350;
+    public double clip2Position = -300;
     //    public Command IntakeArmUp() {
 //        return new RunToPosition(motor,motor.getCurrentPosition()+20, controller, this);
 //    }
@@ -46,6 +47,7 @@ public class IntakeArm extends Subsystem {
     public Command clip() {
         return new RunToPosition(motor, clip, controller, this);
     }
+    public Command clip2Position() {return new RunToPosition(motor, clip2Position, controller, this);}
 
     @Override
     public void initialize() {

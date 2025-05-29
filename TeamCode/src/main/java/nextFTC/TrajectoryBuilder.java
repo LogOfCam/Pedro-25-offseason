@@ -11,12 +11,12 @@ import com.rowanmcalpin.nextftc.pedro.FollowerNotInitializedException;
 public class TrajectoryBuilder {
 
     public static final Pose startPose = new Pose(5.5, 63.5, Math.toRadians(0));
-    public static final Pose placePosition = new Pose(36, 72, Math.toRadians(0));
-    public static final Pose endPosition = new Pose(24.5, 23.5, Math.toRadians(0));
-    public static final Point firstCurve = new Point(23,69);
+    public static final Pose placePosition1 = new Pose(36, 72, Math.toRadians(0));
+    public static final Pose pickup1Position = new Pose(24.5, 23.5, Math.toRadians(0));
+    public static final Point firstPickupCurve = new Point(23,69);
 
 
-    public static PathChain beginningToPlace, middleToEnd;
+    public static PathChain startToPlace, placeToPickup1;
 
     public static void buildBucketPaths(Follower follower) {
         if (follower == null) {
@@ -27,18 +27,18 @@ public class TrajectoryBuilder {
             }
         }
 
-        beginningToPlace = follower.pathBuilder()
+        startToPlace = follower.pathBuilder()
                 .addPath(
                         new BezierLine(
-                                new Point(startPose), new Point(placePosition)
+                                new Point(startPose), new Point(placePosition1)
                         )
                 ).setConstantHeadingInterpolation(startPose.getHeading()).build();
 
-        middleToEnd = follower.pathBuilder()
+        placeToPickup1 = follower.pathBuilder()
                 .addPath(
                         new BezierCurve(
-                                new Point(placePosition),firstCurve,new Point(endPosition)
+                                new Point(placePosition1),firstPickupCurve,new Point(pickup1Position)
                         )
-                ).setConstantHeadingInterpolation(placePosition.getHeading()).build();
+                ).setConstantHeadingInterpolation(placePosition1.getHeading()).build();
     }
 }

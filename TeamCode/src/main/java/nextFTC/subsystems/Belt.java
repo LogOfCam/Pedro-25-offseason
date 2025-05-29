@@ -18,7 +18,7 @@ public class Belt extends Subsystem {
 
     public static double kP = 0.009;
     public static double kI = 0.0;
-    public static double kD = 0.001;
+    public static double kD = 0.00015;
     public static double kF = 0.0;
     public static double threshold = 10;
 
@@ -28,7 +28,7 @@ public class Belt extends Subsystem {
 
     private final PIDFController controller = new PIDFController(kP, kI, kD, (pos) -> kF, threshold);
 
-    public static double increment = 20;
+    public static double increment = 100;
 
     public Command up() { return new RunToPosition(motor, motor.getCurrentPosition() + increment, controller, this);}
 

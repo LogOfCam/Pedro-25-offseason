@@ -3,13 +3,12 @@ package nextFTC.opModes;
 import com.pedropathing.follower.Follower;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.rowanmcalpin.nextftc.core.command.CommandManager;
-import com.rowanmcalpin.nextftc.core.command.groups.ParallelGroup;
 import com.rowanmcalpin.nextftc.core.command.groups.SequentialGroup;
 import com.rowanmcalpin.nextftc.ftc.OpModeData;
 import com.rowanmcalpin.nextftc.pedro.PedroOpMode;
 
 import nextFTC.TrajectoryBuilder;
-import nextFTC.routines.BucketRoutines;
+import nextFTC.routines.SpecimenRoutines;
 import nextFTC.routines.MechanismRoutines;
 import nextFTC.subsystems.Belt;
 import nextFTC.subsystems.Clipper;
@@ -21,12 +20,12 @@ import nextFTC.subsystems.OuttakeSlide;
 import pedroPathing.constants.FConstants;
 import pedroPathing.constants.LConstants;
 
-@Autonomous(name = "TestAuto")
-public class TestAuto extends PedroOpMode {
+@Autonomous(name = "SpecimenAuto")
+public class SpecimenAuto extends PedroOpMode {
     private final FConstants fConstants = new FConstants();
     private final LConstants lConstants = new LConstants();
 
-    public TestAuto(){
+    public SpecimenAuto(){
         super(IntakeClaw.INSTANCE,
                 IntakeSlide.INSTANCE,
                 IntakeArm.INSTANCE,
@@ -73,12 +72,9 @@ public class TestAuto extends PedroOpMode {
 
         CommandManager.INSTANCE.scheduleCommand(
                 new SequentialGroup(
-                        new ParallelGroup(
-                                MechanismRoutines.startingForword(),
-                                MechanismRoutines.testLift()
-                        ),
+                        SpecimenRoutines.firstSample(),
                         MechanismRoutines.place(),
-                        BucketRoutines.bucketToSpecimen()
+                        SpecimenRoutines.pickup1()
                 )
         );
     }

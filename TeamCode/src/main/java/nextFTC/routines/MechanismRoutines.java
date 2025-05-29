@@ -42,7 +42,7 @@ public static Command testLift() {
     public static Command startingForword() {
         return new SequentialGroup(
                 new Delay(0.5),
-                new FollowPath(TrajectoryBuilder.beginningToPlace, true, 1.0)
+                new FollowPath(TrajectoryBuilder.startToPlace, true, 1.0)
 
         );
     }
