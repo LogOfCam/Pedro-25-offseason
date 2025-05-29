@@ -33,13 +33,13 @@ public class OuttakeSlide extends Subsystem {
     private final PIDFController controller = new PIDFController(kP, kI, kD, (pos) -> kF, threshold);
 
     public double transferPosition = 0.0;
-    public double bypassPosition = 300;
+    public double placePosition = 300;
     public double highChamberPosition = 700;
     public double highBasketPosition = 2050;
 
     public Command transfer() { return new RunToPosition(motor, transferPosition, controller, this);}
-    public Command bypass() {
-        return new RunToPosition(motor, bypassPosition, controller, this);
+    public Command placePosition() {
+        return new RunToPosition(motor, placePosition, controller, this);
     }
     public Command highChamber() { return new RunToPosition(motor, highChamberPosition, controller, this);}
     public Command highBasket() { return new RunToPosition(motor, highBasketPosition, controller, this);}

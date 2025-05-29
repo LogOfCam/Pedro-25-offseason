@@ -3,12 +3,14 @@ package nextFTC.opModes;
 import com.pedropathing.follower.Follower;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.rowanmcalpin.nextftc.core.command.CommandManager;
+import com.rowanmcalpin.nextftc.core.command.groups.ParallelGroup;
 import com.rowanmcalpin.nextftc.core.command.groups.SequentialGroup;
 import com.rowanmcalpin.nextftc.ftc.OpModeData;
 import com.rowanmcalpin.nextftc.pedro.PedroOpMode;
 
 import nextFTC.TrajectoryBuilder;
 import nextFTC.routines.BucketRoutines;
+import nextFTC.routines.MechanismRoutines;
 import nextFTC.subsystems.Belt;
 import nextFTC.subsystems.Clipper;
 import nextFTC.subsystems.IntakeArm;
@@ -71,8 +73,11 @@ public class TestAuto extends PedroOpMode {
 
         CommandManager.INSTANCE.scheduleCommand(
                 new SequentialGroup(
-                        BucketRoutines.testLift(),
-                        BucketRoutines.firstSample(),
+                        new ParallelGroup(
+                                MechanismRoutines.startingForword(),
+                                MechanismRoutines.testLift()
+                        ),
+                        MechanismRoutines.place(),
                         BucketRoutines.bucketToSpecimen()
                 )
         );

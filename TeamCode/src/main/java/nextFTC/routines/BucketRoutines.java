@@ -8,6 +8,7 @@ import com.rowanmcalpin.nextftc.pedro.FollowPath;
 
 import nextFTC.TrajectoryBuilder;
 import nextFTC.subsystems.IntakeClaw;
+import nextFTC.subsystems.OuttakeClaw;
 import nextFTC.subsystems.OuttakeSlide;
 
 public class BucketRoutines {
@@ -16,7 +17,7 @@ public class BucketRoutines {
 
     public static Command firstSample() {
         return new ParallelGroup(
-                new FollowPath(TrajectoryBuilder.beginningToMiddle, true, 1.0)
+                new FollowPath(TrajectoryBuilder.beginningToPlace, true, 1.0)
                 //MechanismRoutines.intakeOut()
         );
     }
@@ -30,13 +31,4 @@ public class BucketRoutines {
         );
     }
 
-    public static Command testLift() {
-        return new SequentialGroup(
-                OuttakeSlide.INSTANCE.highChamber(),
-                new Delay(1),
-                IntakeClaw.INSTANCE.open(),
-                //new Delay(1),
-                OuttakeSlide.INSTANCE.transfer()
-        );
-    }
 }

@@ -132,7 +132,7 @@ public class Teleop extends PedroOpMode {
         gamepadManager.getGamepad1().getDpadUp().setPressedCommand(OuttakeSlide.INSTANCE::highChamber);
         gamepadManager.getGamepad1().getDpadDown().setPressedCommand(OuttakeSlide.INSTANCE::transfer);
         gamepadManager.getGamepad1().getDpadLeft().setPressedCommand(OuttakeSlide.INSTANCE::highBasket);
-        gamepadManager.getGamepad1().getDpadRight().setPressedCommand(OuttakeSlide.INSTANCE::bypass);
+        gamepadManager.getGamepad1().getDpadRight().setPressedCommand(OuttakeSlide.INSTANCE::placePosition);
 
         gamepadManager.getGamepad2().getLeftStick().setHeldCommand((pos) -> OuttakeSlide.INSTANCE.move(pos.getSecond()));
         //gamepadManager.getGamepad2().getRightBumper().setPressedCommand(this::forwardCommand);
