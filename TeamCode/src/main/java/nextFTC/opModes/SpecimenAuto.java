@@ -70,7 +70,8 @@ public class SpecimenAuto extends PedroOpMode {
                 new SequentialGroup(
                         SpecimenRoutines.firstSample(),
                         MechanismRoutines.place(),
-                        SpecimenRoutines.pickup1()
+                        SpecimenRoutines.pickup1(),
+                        SpecimenRoutines.clip1()
                 )
         );
     }

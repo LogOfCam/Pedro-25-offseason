@@ -106,7 +106,6 @@ public class Teleop extends PedroOpMode {
         //gamepadManager.getGamepad1().getLeftTrigger().setPressedCommand(IntakeArm.INSTANCE::IntakeArmUp);
         //gamepadManager.getGamepad1().getRightTrigger().setPressedCommand(IntakeArm.INSTANCE::IntakeArmDown);
 
-        gamepadManager.getGamepad2().getA().setPressedCommand(IntakeArm.INSTANCE::clip2Position);
 
         gamepadManager.getGamepad1().getX().setReleasedCommand(IntakeClaw.INSTANCE::toggle); // When pressed it triggers it so say open
         gamepadManager.getGamepad1().getX().setPressedCommand(IntakeClaw.INSTANCE::toggle);  // Then when released it should close it
@@ -117,7 +116,7 @@ public class Teleop extends PedroOpMode {
         gamepadManager.getGamepad1().getLeftBumper().setReleasedCommand(OuttakeClaw.INSTANCE::toggle); // When pressed it triggers it so say open
         gamepadManager.getGamepad1().getLeftBumper().setPressedCommand(OuttakeClaw.INSTANCE::toggle);  // Then when released it should close it
 
-        gamepadManager.getGamepad1().getA().setPressedCommand(IntakeArm.INSTANCE::clip);
+        gamepadManager.getGamepad1().getA().setPressedCommand(IntakeArm.INSTANCE::ramp);
         gamepadManager.getGamepad1().getB().setPressedCommand(IntakeArm.INSTANCE::transfer);
         gamepadManager.getGamepad1().getY().setPressedCommand(IntakeArm.INSTANCE::pickup);
 

@@ -32,9 +32,9 @@ public class IntakeArm extends Subsystem {
 
     private final PIDFController controller = new PIDFController(kP, kI, kD, (pos) -> kF, threshold);
 
-    public double pickupPosition = 400;
+    public double pickupPosition = 450;
     public double transferPosition = -20;
-    public double clip = -350;
+    public double ramp = -120;
     public double clip2Position = -300;
     //    public Command IntakeArmUp() {
 //        return new RunToPosition(motor,motor.getCurrentPosition()+20, controller, this);
@@ -44,10 +44,9 @@ public class IntakeArm extends Subsystem {
 //    }
     public Command pickup() { return new RunToPosition(motor, pickupPosition, controller, this); }
     public Command transfer() { return new RunToPosition(motor, transferPosition, controller, this); }
-    public Command clip() {
-        return new RunToPosition(motor, clip, controller, this);
+    public Command ramp() {
+        return new RunToPosition(motor, ramp, controller, this);
     }
-    public Command clip2Position() {return new RunToPosition(motor, clip2Position, controller, this);}
 
     @Override
     public void initialize() {

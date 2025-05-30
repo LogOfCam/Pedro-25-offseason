@@ -1,11 +1,13 @@
 package nextFTC.routines;
 
 import com.rowanmcalpin.nextftc.core.command.Command;
+import com.rowanmcalpin.nextftc.core.command.groups.ParallelGroup;
 import com.rowanmcalpin.nextftc.core.command.groups.SequentialGroup;
 import com.rowanmcalpin.nextftc.core.command.utility.delays.Delay;
 import com.rowanmcalpin.nextftc.pedro.FollowPath;
 
 import nextFTC.TrajectoryBuilder;
+import nextFTC.subsystems.IntakeArm;
 import nextFTC.subsystems.IntakeClaw;
 import nextFTC.subsystems.IntakeSlide;
 import nextFTC.subsystems.OuttakeClaw;
@@ -44,6 +46,19 @@ public static Command testLift() {
                 new Delay(0.5),
                 new FollowPath(TrajectoryBuilder.startToPlace, true, 1.0)
 
+        );
+    }
+    public static Command pickUp() {
+        return new ParallelGroup(
+                IntakeArm.INSTANCE.pickup()
+        );
+    }
+    public static Command CloseClaw() {
+        return new SequentialGroup(
+        IntakeClaw.INSTANCE.close(),
+                new Delay(0.5),
+                IntakeArm.INSTANCE.ramp(),
+                IntakeClaw.INSTANCE.open()
         );
     }
 }

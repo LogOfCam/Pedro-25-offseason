@@ -15,7 +15,7 @@ public class IntakeClaw extends Subsystem {
     public String name = "IntakeClaw";
     public String state;
 
-    public double IntakeClawOpen = 0.5;
+    public double IntakeClawOpen = 0.55;
     public double IntakeClawClosed = 0.72;
 
     @Override
