@@ -13,8 +13,7 @@ import com.rowanmcalpin.nextftc.ftc.OpModeData;
 import com.rowanmcalpin.nextftc.ftc.driving.MecanumDriverControlled;
 import com.rowanmcalpin.nextftc.ftc.hardware.controllables.MotorEx;
 import com.rowanmcalpin.nextftc.pedro.PedroOpMode;
-import nextFTC.subsystems.Belt;
-import nextFTC.subsystems.Clipper;
+
 import nextFTC.subsystems.IntakeArm;
 import nextFTC.subsystems.IntakeClaw;
 import nextFTC.subsystems.IntakeSlide;
@@ -28,9 +27,7 @@ public class Teleop extends PedroOpMode {
                 IntakeSlide.INSTANCE,
                 IntakeArm.INSTANCE,
                 OuttakeSlide.INSTANCE,
-                OuttakeClaw.INSTANCE,
-                Belt.INSTANCE,
-                Clipper.INSTANCE);
+                OuttakeClaw.INSTANCE);
     }
 
     public MecanumDriverControlled driver;
@@ -100,8 +97,6 @@ public class Teleop extends PedroOpMode {
 
         IntakeArm.INSTANCE.resetEncoder();
         OuttakeSlide.INSTANCE.resetEncoder();
-        Belt.INSTANCE.resetEncoder();
-        Clipper.INSTANCE.resetEncoder();
     }
 
     private void registerControls() {
@@ -111,10 +106,6 @@ public class Teleop extends PedroOpMode {
         //gamepadManager.getGamepad1().getLeftTrigger().setPressedCommand(IntakeArm.INSTANCE::IntakeArmUp);
         //gamepadManager.getGamepad1().getRightTrigger().setPressedCommand(IntakeArm.INSTANCE::IntakeArmDown);
 
-        gamepadManager.getGamepad2().getDpadUp().setPressedCommand(Clipper.INSTANCE::up);
-        gamepadManager.getGamepad2().getDpadDown().setPressedCommand(Clipper.INSTANCE::down);
-        gamepadManager.getGamepad2().getDpadLeft().setPressedCommand(Belt.INSTANCE::down);
-        gamepadManager.getGamepad2().getDpadRight().setPressedCommand(Belt.INSTANCE::up);
         gamepadManager.getGamepad2().getA().setPressedCommand(IntakeArm.INSTANCE::clip2Position);
 
         gamepadManager.getGamepad1().getX().setReleasedCommand(IntakeClaw.INSTANCE::toggle); // When pressed it triggers it so say open

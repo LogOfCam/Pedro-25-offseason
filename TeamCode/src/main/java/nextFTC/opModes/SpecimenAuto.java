@@ -10,8 +10,6 @@ import com.rowanmcalpin.nextftc.pedro.PedroOpMode;
 import nextFTC.TrajectoryBuilder;
 import nextFTC.routines.SpecimenRoutines;
 import nextFTC.routines.MechanismRoutines;
-import nextFTC.subsystems.Belt;
-import nextFTC.subsystems.Clipper;
 import nextFTC.subsystems.IntakeArm;
 import nextFTC.subsystems.IntakeClaw;
 import nextFTC.subsystems.IntakeSlide;
@@ -30,9 +28,7 @@ public class SpecimenAuto extends PedroOpMode {
                 IntakeSlide.INSTANCE,
                 IntakeArm.INSTANCE,
                 OuttakeSlide.INSTANCE,
-                OuttakeClaw.INSTANCE,
-                Belt.INSTANCE,
-                Clipper.INSTANCE);
+                OuttakeClaw.INSTANCE);
     }
 
     @Override
