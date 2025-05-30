@@ -3,6 +3,7 @@ package nextFTC.routines;
 import com.rowanmcalpin.nextftc.core.command.Command;
 import com.rowanmcalpin.nextftc.core.command.groups.ParallelGroup;
 import com.rowanmcalpin.nextftc.core.command.groups.SequentialGroup;
+import com.rowanmcalpin.nextftc.core.command.utility.delays.Delay;
 import com.rowanmcalpin.nextftc.pedro.FollowPath;
 
 import nextFTC.TrajectoryBuilder;
@@ -24,13 +25,22 @@ public class SpecimenRoutines {
         return new SequentialGroup(
                 IntakeClaw.INSTANCE.open(),
                 new FollowPath(TrajectoryBuilder.placeToPickup1, true, 1.0),
+                new Delay(0.5),
                 MechanismRoutines.pickUp(),
                 MechanismRoutines.CloseClaw()
         );
     }
     public static Command clip1() {
         return new SequentialGroup(
-                new FollowPath(TrajectoryBuilder.humanPlayer1, true, 1.0)
+                new FollowPath(TrajectoryBuilder.clip1, true, 1.0)
+        );
+    }
+    public static Command pickupPosition2() {
+        return new SequentialGroup(
+                new FollowPath(TrajectoryBuilder.pickupPosition2, true, 1.0),
+                new Delay(0.5),
+                MechanismRoutines.pickUp(),
+                MechanismRoutines.CloseClaw()
         );
     }
 }
