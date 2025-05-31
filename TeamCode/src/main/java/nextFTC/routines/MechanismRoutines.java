@@ -41,7 +41,7 @@ public static Command testLift() {
                 //OuttakeSlide.INSTANCE.transfer()
         );
     }
-    public static Command startingForword() {
+    public static Command startingForward() {
         return new SequentialGroup(
                 new Delay(0.5),
                 new FollowPath(TrajectoryBuilder.startToPlace, true, 1.0)
