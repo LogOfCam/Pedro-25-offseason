@@ -19,7 +19,7 @@ public class IntakeArm extends Subsystem {
 
     public static final IntakeArm INSTANCE = new IntakeArm();
 
-    public static double kP = 0.004;
+    public static double kP = 0.0045;
     public static double kI = 0.0;
     public static double kD = 0.0003;
     public static double kF = 0.1;
@@ -34,7 +34,7 @@ public class IntakeArm extends Subsystem {
 
     public double pickupPosition = 450;
     public double transferPosition = -20;
-    public double ramp = -120;
+    public double ramp = -140;
     public double clip2Position = -300;
     //    public Command IntakeArmUp() {
 //        return new RunToPosition(motor,motor.getCurrentPosition()+20, controller, this);

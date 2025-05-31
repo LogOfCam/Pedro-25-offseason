@@ -33,17 +33,22 @@ public class SpecimenRoutines {
     }
 
     public static Command clip1() {
-        new ParallelGroup(
+        return new ParallelGroup(
                 new FollowPath(TrajectoryBuilder.clip1, true, 1.0),
                 MechanismRoutines.rampToPickup2()
         );
     }
-        public static Command pickupPosition2 () {
-            return new SequentialGroup(
-                    new FollowPath(TrajectoryBuilder.pickupPosition2, true, 1.0),
-                    new Delay(0.5),
-                    MechanismRoutines.pickUp(),
-                    MechanismRoutines.CloseClaw()
-            );
-        }
+
+    public static Command pickupPosition2() {
+        return new SequentialGroup(
+        return new ParallelGroup(
+                new FollowPath(TrajectoryBuilder.pickupPosition2, true, 1.0),
+                MechanismRoutines.rampToPickup2()
+                ),
+                new Delay(0.5),
+                MechanismRoutines.pickUp(),
+                MechanismRoutines.CloseClaw()
+        );
+
     }
+}
