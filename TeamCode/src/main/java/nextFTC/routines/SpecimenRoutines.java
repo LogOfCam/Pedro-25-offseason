@@ -11,7 +11,8 @@ import nextFTC.subsystems.IntakeClaw;
 
 public class SpecimenRoutines {
 
-    private SpecimenRoutines() {}
+    private SpecimenRoutines() {
+    }
 
     public static Command firstSample() {
         return new ParallelGroup(
@@ -30,17 +31,19 @@ public class SpecimenRoutines {
                 MechanismRoutines.CloseClaw()
         );
     }
+
     public static Command clip1() {
-        return new SequentialGroup(
-                new FollowPath(TrajectoryBuilder.clip1, true, 1.0)
+        new ParallelGroup(
+                new FollowPath(TrajectoryBuilder.clip1, true, 1.0),
+                MechanismRoutines.rampToPickup2()
         );
     }
-    public static Command pickupPosition2() {
-        return new SequentialGroup(
-                new FollowPath(TrajectoryBuilder.pickupPosition2, true, 1.0),
-                new Delay(0.5),
-                MechanismRoutines.pickUp(),
-                MechanismRoutines.CloseClaw()
-        );
+        public static Command pickupPosition2 () {
+            return new SequentialGroup(
+                    new FollowPath(TrajectoryBuilder.pickupPosition2, true, 1.0),
+                    new Delay(0.5),
+                    MechanismRoutines.pickUp(),
+                    MechanismRoutines.CloseClaw()
+            );
+        }
     }
-}

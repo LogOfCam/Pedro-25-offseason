@@ -61,6 +61,15 @@ public static Command testLift() {
                 IntakeClaw.INSTANCE.open()
         );
     }
+    public static Command rampToPickup2() {
+        return new SequentialGroup(
+                IntakeClaw.INSTANCE.close(),
+                new Delay(0.5),
+                IntakeArm.INSTANCE.transfer(),
+                IntakeClaw.INSTANCE.open()
+        );
+
+    }
 }
 //    public static Command intakeOut() {
 //        return new SequentialGroup(
