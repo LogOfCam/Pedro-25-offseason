@@ -19,12 +19,12 @@ public class IntakeArm extends Subsystem {
 
     public static final IntakeArm INSTANCE = new IntakeArm();
 
-    public static double kP = 0.0045;
+    public static double kP = 0.0043;
     public static double kI = 0.0;
     public static double kD = 0.0003;
     public static double kF = 0.1;
     public static double target = 0.0;
-    public static double threshold = 10;
+    public static double threshold = 20;
 
     public String name = "IntakeArm";
 

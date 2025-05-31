@@ -33,15 +33,19 @@ public class SpecimenRoutines {
     }
 
     public static Command clip1() {
-        return new ParallelGroup(
+        return new SequentialGroup(
+                IntakeClaw.INSTANCE.open(),
+                new Delay(1),
+         new ParallelGroup(
                 new FollowPath(TrajectoryBuilder.clip1, true, 1.0),
                 MechanismRoutines.rampToPickup2()
+        )
         );
     }
 
     public static Command pickupPosition2() {
         return new SequentialGroup(
-        return new ParallelGroup(
+         new ParallelGroup(
                 new FollowPath(TrajectoryBuilder.pickupPosition2, true, 1.0),
                 MechanismRoutines.rampToPickup2()
                 ),

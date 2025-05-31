@@ -36,7 +36,7 @@ public static Command testLift() {
                 new Delay(0.35),
                 OuttakeSlide.INSTANCE.placePosition(),
                 OuttakeClaw.INSTANCE.open(),
-                new Delay(0.35)
+                new Delay(0.3)
                 //new Delay(1),
                 //OuttakeSlide.INSTANCE.transfer()
         );
@@ -57,12 +57,12 @@ public static Command testLift() {
         return new SequentialGroup(
         IntakeClaw.INSTANCE.close(),
                 new Delay(0.5),
-                IntakeArm.INSTANCE.ramp(),
-                IntakeClaw.INSTANCE.open()
+                IntakeArm.INSTANCE.ramp()
         );
     }
     public static Command rampToPickup2() {
         return new SequentialGroup(
+                new Delay(0.5),
                 IntakeClaw.INSTANCE.close(),
                 new Delay(0.5),
                 IntakeArm.INSTANCE.transfer(),
