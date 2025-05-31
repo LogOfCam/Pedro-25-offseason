@@ -55,4 +55,9 @@ public class SpecimenRoutines {
         );
 
     }
+    public static Command clip2() {
+        return new SequentialGroup(
+                new FollowPath(TrajectoryBuilder.clip2, true, 1.0)
+        );
+    }
 }

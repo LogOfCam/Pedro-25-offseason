@@ -24,7 +24,7 @@ public class IntakeArm extends Subsystem {
     public static double kD = 0.0003;
     public static double kF = 0.1;
     public static double target = 0.0;
-    public static double threshold = 20;
+    public static double threshold = 30;
 
     public String name = "IntakeArm";
 
@@ -32,7 +32,7 @@ public class IntakeArm extends Subsystem {
 
     private final PIDFController controller = new PIDFController(kP, kI, kD, (pos) -> kF, threshold);
 
-    public double pickupPosition = 450;
+    public double pickupPosition = 475;
     public double transferPosition = -20;
     public double ramp = -140;
     public double clip2Position = -300;

@@ -17,9 +17,10 @@ public class TrajectoryBuilder {
     public static final Point firstPickupCurve = new Point(23,69);
     public static final Pose humanPlayer1 = new Pose(14.5, 25.5, Math.toRadians(0));
     public static final Pose pickup2Position = new Pose(30.5, 15.5, Math.toRadians(0));
+    public static final Pose humanPlayer2 = new Pose(14.5, 15.5, Math.toRadians(180));
 
 
-    public static PathChain startToPlace, placeToPickup1, clip1, pickupPosition2 ;
+    public static PathChain startToPlace, placeToPickup1, clip1, pickupPosition2, clip2;
 
     public static void buildBucketPaths(Follower follower) {
         if (follower == null) {
@@ -56,5 +57,11 @@ public class TrajectoryBuilder {
                                 new Point(humanPlayer1), new Point(pickup2Position)
                         )
                 ).setConstantHeadingInterpolation(pickup2Position.getHeading()).build();
+        clip2 = follower.pathBuilder()
+                . addPath(
+                        new BezierLine(
+                                new Point(pickup2Position), new Point(humanPlayer2)
+                        )
+                ).setConstantHeadingInterpolation(humanPlayer2.getHeading()).build();
     }
 }
