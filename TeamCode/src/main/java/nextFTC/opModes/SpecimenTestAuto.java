@@ -39,7 +39,7 @@ public class SpecimenTestAuto extends PedroOpMode {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        follower.setStartingPose(TrajectoryBuilder.startPose);
+        follower.setStartingPose(TrajectoryBuilder.startPosition);
 
         IntakeArm.INSTANCE.resetEncoder();
         OuttakeSlide.INSTANCE.resetEncoder();
@@ -67,11 +67,11 @@ public class SpecimenTestAuto extends PedroOpMode {
 
         CommandManager.INSTANCE.scheduleCommand(
                 new SequentialGroup(
-                        SpecimenRoutines.firstSpecimen(),
-                       // SpecimenRoutines.PreparePush1(),
-                        SpecimenRoutines.Push1(),
-                        SpecimenRoutines.PreparePush2(),
-                        SpecimenRoutines.Push2()
+                        SpecimenRoutines.firstSpecimen()
+//                        SpecimenRoutines.PreparePush1(),
+//                        SpecimenRoutines.Push1(),
+//                        SpecimenRoutines.PreparePush2(),
+//                        SpecimenRoutines.Push2()
 
                 )
         );

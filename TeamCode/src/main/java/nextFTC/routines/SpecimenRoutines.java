@@ -60,26 +60,28 @@ public class SpecimenRoutines {
                 new FollowPath(TrajectoryBuilder.clip2, true, 1.0)
         );
     }
+
+
+
+
+
+
+
     // SpecimenTestAuto
     public static Command firstSpecimen() {
         return new ParallelGroup(
-                new FollowPath(TrajectoryBuilder.startToPlace, true, 1.0),
+                new FollowPath(TrajectoryBuilder.firstSpecimen, true, 1.0),
                 MechanismRoutines.testLift(),
-                MechanismRoutines.place(),
-         new SequentialGroup(
+                MechanismRoutines.place()
+        );
+    }
+    public static Command PreparePush1() {
+        return new SequentialGroup(
                 IntakeClaw.INSTANCE.open(),
                 new Delay(0.5),
                 new FollowPath(TrajectoryBuilder.PreparePush1, true, 0.5)
-        )
-        );
-    }
-//    public static Command PreparePush1() {
-//        return new SequentialGroup(
-//                IntakeClaw.INSTANCE.open(),
-//                new Delay(0.5),
-//                new FollowPath(TrajectoryBuilder.PreparePush1, true, 0.5)
-//                );
-//   }
+                );
+   }
     public static Command Push1() {
         return new SequentialGroup(
                 new FollowPath(TrajectoryBuilder.Push1, true, 1.0)

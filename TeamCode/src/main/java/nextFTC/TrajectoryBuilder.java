@@ -89,14 +89,31 @@ public class TrajectoryBuilder {
                         new BezierCurve(
                                 new Point(placePosition1), curve1, curve2, new Point(preparePush1)
                         )
-                ).setConstantHeadingInterpolation(placePosition1.getHeading()).build();
-                PreparePush1 = follower.pathBuilder()
+                ).setConstantHeadingInterpolation(placePosition1.getHeading())
+                .addPath(
+                        new BezierLine(
+                                new Point(preparePush1), new Point(push1)
+                        )
+                ).setConstantHeadingInterpolation(preparePush1.getHeading())
+                .addPath(
+                        new BezierCurve(
+                                new Point(push1), curve3, new Point(PrepareToPush2)
+                        )
+                ).setConstantHeadingInterpolation(push1.getHeading())
+                .addPath(
+                        new BezierLine(
+                                new Point(PrepareToPush2), new Point(push2)
+                        )
+                ).setConstantHeadingInterpolation(PrepareToPush2.getHeading())
+                .build();
+
+        PreparePush1 = follower.pathBuilder()
                 .addPath(
                         new BezierLine(
                                 new Point(preparePush1), new Point(push1)
                         )
                 ).setConstantHeadingInterpolation(preparePush1.getHeading()).build();
-                Push1 = follower.pathBuilder()
+        Push1 = follower.pathBuilder()
                         .addPath(
                         new BezierCurve(
                                 new Point(push1), curve3, new Point(PrepareToPush2)
