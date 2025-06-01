@@ -71,10 +71,8 @@ public class SpecimenRoutines {
     public static Command PreparePush1() {
         return new SequentialGroup(
                 IntakeClaw.INSTANCE.open(),
-                new FollowPath(TrajectoryBuilder.PreparePush1, true, 1.0),
                 new Delay(0.5),
-                MechanismRoutines.pickUp(),
-                MechanismRoutines.CloseClaw()
+                new FollowPath(TrajectoryBuilder.PreparePush1, true, 0.5)
                 );
     }
     public static Command Push1() {

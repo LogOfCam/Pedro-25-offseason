@@ -23,7 +23,7 @@ public class TrajectoryBuilder {
     //   SpecimenTestAuto
     public static final Pose startPosition = new Pose(5.5, 63.5, Math.toRadians(0));
     public static final Pose preparePush1 = new Pose(55, 23.5, Math.toRadians(0));
-    public static final Point curve1 = new Point(4, 2.5);
+    public static final Point curve1 = new Point(6, 8.5);
     public static final Point curve2 = new Point(87, 51);
     public static final Pose push1 = new Pose(22.5,21.5, Math.toRadians(0));
     public static final Pose PrepareToPush2 = new Pose(59, 13, Math.toRadians(0));
@@ -85,26 +85,21 @@ public class TrajectoryBuilder {
                                 new Point(startPosition), new Point(placePosition1)
                         )
                 ).setConstantHeadingInterpolation(startPosition.getHeading()).build();
-
-        PreparePush1 = follower.pathBuilder()
                 .addPath(
                         new BezierCurve(
                                 new Point(placePosition1), curve1, curve2, new Point(preparePush1)
                         )
                 ).setConstantHeadingInterpolation(placePosition1.getHeading()).build();
-        Push1 = follower.pathBuilder()
                 .addPath(
                         new BezierLine(
                                 new Point(preparePush1), new Point(push1)
                         )
                 ).setConstantHeadingInterpolation(preparePush1.getHeading()).build();
-        prepareToPush2 = follower.pathBuilder()
                 .addPath(
                         new BezierCurve(
                                 new Point(push1), curve3, new Point(PrepareToPush2)
                         )
                 ).setConstantHeadingInterpolation(push1.getHeading()).build();
-        Push2 = follower.pathBuilder()
                 .addPath(
                         new BezierLine(
                                 new Point(PrepareToPush2), new Point(push2)
