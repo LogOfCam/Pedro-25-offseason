@@ -84,22 +84,22 @@ public class TrajectoryBuilder {
                         new BezierLine(
                                 new Point(startPosition), new Point(placePosition1)
                         )
-                ).setConstantHeadingInterpolation(startPosition.getHeading());
+                ).setConstantHeadingInterpolation(startPosition.getHeading())
                 .addPath(
                         new BezierCurve(
                                 new Point(placePosition1), curve1, curve2, new Point(preparePush1)
                         )
-                ).setConstantHeadingInterpolation(placePosition1.getHeading());
+                ).setConstantHeadingInterpolation(placePosition1.getHeading())
                 .addPath(
                         new BezierLine(
                                 new Point(preparePush1), new Point(push1)
                         )
-                ).setConstantHeadingInterpolation(preparePush1.getHeading());
+                ).setConstantHeadingInterpolation(preparePush1.getHeading())
                 .addPath(
                         new BezierCurve(
                                 new Point(push1), curve3, new Point(PrepareToPush2)
                         )
-                ).setConstantHeadingInterpolation(push1.getHeading());
+                ).setConstantHeadingInterpolation(push1.getHeading())
                 .addPath(
                         new BezierLine(
                                 new Point(PrepareToPush2), new Point(push2)
