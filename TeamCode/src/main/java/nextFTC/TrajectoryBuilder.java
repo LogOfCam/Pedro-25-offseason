@@ -78,13 +78,13 @@ public class TrajectoryBuilder {
                 ).setConstantHeadingInterpolation(humanPlayer2.getHeading()).build();
 
 
-        // SpecimenTestRain
+        // SpecimenTestAuto
         firstSpecimen = follower.pathBuilder()
                 .addPath(
                         new BezierLine(
                                 new Point(startPosition), new Point(placePosition1)
                         )
-                ).setConstantHeadingInterpolation(startPosition.getHeading()).build();
+                ).setConstantHeadingInterpolation(startPosition.getHeading());
                 .addPath(
                         new BezierCurve(
                                 new Point(placePosition1), curve1, curve2, new Point(preparePush1)
