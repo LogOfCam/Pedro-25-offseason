@@ -68,7 +68,7 @@ public class SpecimenTestAuto extends PedroOpMode {
         CommandManager.INSTANCE.scheduleCommand(
                 new SequentialGroup(
                         SpecimenRoutines.firstSpecimen(),
-                        SpecimenRoutines.PreparePush1(),
+                       // SpecimenRoutines.PreparePush1(),
                         SpecimenRoutines.Push1(),
                         SpecimenRoutines.PreparePush2(),
                         SpecimenRoutines.Push2()
