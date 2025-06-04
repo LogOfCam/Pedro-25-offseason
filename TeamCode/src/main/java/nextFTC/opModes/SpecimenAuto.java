@@ -9,12 +9,8 @@ import com.rowanmcalpin.nextftc.pedro.PedroOpMode;
 
 import nextFTC.TrajectoryBuilder;
 import nextFTC.routines.SpecimenRoutines;
-import nextFTC.routines.MechanismRoutines;
-import nextFTC.subsystems.IntakeArm;
-import nextFTC.subsystems.IntakeClaw;
-import nextFTC.subsystems.IntakeSlide;
-import nextFTC.subsystems.OuttakeClaw;
-import nextFTC.subsystems.OuttakeSlide;
+import nextFTC.subsystems.arm;
+import nextFTC.subsystems.claw;
 import pedroPathing.constants.FConstants;
 import pedroPathing.constants.LConstants;
 
@@ -24,11 +20,8 @@ public class SpecimenAuto extends PedroOpMode {
     private final LConstants lConstants = new LConstants();
 
     public SpecimenAuto(){
-        super(IntakeClaw.INSTANCE,
-                IntakeSlide.INSTANCE,
-                IntakeArm.INSTANCE,
-                OuttakeSlide.INSTANCE,
-                OuttakeClaw.INSTANCE);
+        super(claw.INSTANCE,
+                arm.INSTANCE);
     }
 
     @Override
@@ -42,18 +35,16 @@ public class SpecimenAuto extends PedroOpMode {
         }
         follower.setStartingPose(TrajectoryBuilder.startPose);
 
-        IntakeArm.INSTANCE.resetEncoder();
-        OuttakeSlide.INSTANCE.resetEncoder();
+        arm.INSTANCE.resetEncoder();
 
-        IntakeClaw.INSTANCE.close().invoke();
-        OuttakeClaw.INSTANCE.close().invoke();
+        claw.INSTANCE.close().invoke();
 
         OpModeData.telemetry = telemetry;
     }
 
     @Override
     public void onWaitForStart() {
-        IntakeClaw.INSTANCE.close(); // Close claw
+        claw.INSTANCE.close(); // Close claw
         telemetry.update();
     }
 
@@ -69,11 +60,9 @@ public class SpecimenAuto extends PedroOpMode {
         CommandManager.INSTANCE.scheduleCommand(
                 new SequentialGroup(
                         SpecimenRoutines.firstSample(),
-                        MechanismRoutines.place(),
                         SpecimenRoutines.pickup1(),
                         SpecimenRoutines.clip1(),
                         SpecimenRoutines.pickupPosition2(),
-                        MechanismRoutines.rampToPickup2(),
                         SpecimenRoutines.clip2()
                 )
         );

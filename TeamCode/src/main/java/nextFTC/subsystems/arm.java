@@ -15,34 +15,38 @@ import com.rowanmcalpin.nextftc.ftc.hardware.controllables.SetPower;
 import org.firstinspires.ftc.robotcore.external.navigation.CurrentUnit;
 
 @Config
-public class OuttakeSlide extends Subsystem {
+public class arm extends Subsystem {
 
-    public static final OuttakeSlide INSTANCE = new OuttakeSlide();
+    public static final arm INSTANCE = new arm();
 
-    public static double kP = 0.01;
+    public static double kP = 0.0043;
     public static double kI = 0.0;
-    public static double kD = 0.00015;
+    public static double kD = 0.0003;
     public static double kF = 0.1;
     public static double target = 0.0;
-    public static double threshold = 10;
+    public static double threshold = 30;
 
-    public String name = "OuttakeSlide";
+    public String name = "arm";
 
     private MotorEx motor;
 
     private final PIDFController controller = new PIDFController(kP, kI, kD, (pos) -> kF, threshold);
 
-    public double transferPosition = 0.0;
-    public double placePosition = 300;
-    public double highChamberPosition = 700;
-    public double highBasketPosition = 2050;
-
-    public Command transfer() { return new RunToPosition(motor, transferPosition, controller, this);}
-    public Command placePosition() {
-        return new RunToPosition(motor, placePosition, controller, this);
+    public double pickupPosition = 475;
+    public double transferPosition = -20;
+    public double ramp = -140;
+    public double clip2Position = -300;
+    //    public Command IntakeArmUp() {
+//        return new RunToPosition(motor,motor.getCurrentPosition()+20, controller, this);
+//    }
+//    public Command IntakeArmDown() {
+//        return new RunToPosition(motor,motor.getCurrentPosition()-20, controller, this);
+//    }
+    public Command pickup() { return new RunToPosition(motor, pickupPosition, controller, this); }
+    public Command transfer() { return new RunToPosition(motor, transferPosition, controller, this); }
+    public Command ramp() {
+        return new RunToPosition(motor, ramp, controller, this);
     }
-    public Command highChamber() { return new RunToPosition(motor, highChamberPosition, controller, this);}
-    public Command highBasket() { return new RunToPosition(motor, highBasketPosition, controller, this);}
 
     @Override
     public void initialize() {
@@ -61,9 +65,9 @@ public class OuttakeSlide extends Subsystem {
         controller.setSetPointTolerance(threshold);
         
 
-        OpModeData.telemetry.addData("OuttakeSlide Position", motor.getCurrentPosition());
-        OpModeData.telemetry.addData("OuttakeSlide Target", controller.getTarget());
-        OpModeData.telemetry.addData("OuttakeSlide Current(A):",motor.getMotor().getCurrent(CurrentUnit.MILLIAMPS));
+        OpModeData.telemetry.addData("arm Position", motor.getCurrentPosition());
+        OpModeData.telemetry.addData("arm Target", controller.getTarget());
+        OpModeData.telemetry.addData("arm Current(A):",motor.getMotor().getCurrent(CurrentUnit.MILLIAMPS));
     }
 
     public void resetEncoder() {

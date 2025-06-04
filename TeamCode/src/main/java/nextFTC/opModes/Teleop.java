@@ -14,20 +14,14 @@ import com.rowanmcalpin.nextftc.ftc.driving.MecanumDriverControlled;
 import com.rowanmcalpin.nextftc.ftc.hardware.controllables.MotorEx;
 import com.rowanmcalpin.nextftc.pedro.PedroOpMode;
 
-import nextFTC.subsystems.IntakeArm;
-import nextFTC.subsystems.IntakeClaw;
-import nextFTC.subsystems.IntakeSlide;
-import nextFTC.subsystems.OuttakeClaw;
-import nextFTC.subsystems.OuttakeSlide;
+import nextFTC.subsystems.arm;
+import nextFTC.subsystems.claw;
 
 @TeleOp(name = "ClipBot")
 public class Teleop extends PedroOpMode {
     public Teleop() {
-        super(IntakeClaw.INSTANCE,
-                IntakeSlide.INSTANCE,
-                IntakeArm.INSTANCE,
-                OuttakeSlide.INSTANCE,
-                OuttakeClaw.INSTANCE);
+        super(claw.INSTANCE,
+                arm.INSTANCE);
     }
 
     public MecanumDriverControlled driver;
@@ -59,8 +53,7 @@ public class Teleop extends PedroOpMode {
         registerControls();
 
 
-        IntakeClaw.INSTANCE.close();
-        OuttakeClaw.INSTANCE.close();
+        claw.INSTANCE.close();
     }
 
     @Override
@@ -95,8 +88,7 @@ public class Teleop extends PedroOpMode {
             driveMotor.getMotor().setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         }
 
-        IntakeArm.INSTANCE.resetEncoder();
-        OuttakeSlide.INSTANCE.resetEncoder();
+        arm.INSTANCE.resetEncoder();
     }
 
     private void registerControls() {
@@ -107,25 +99,16 @@ public class Teleop extends PedroOpMode {
         //gamepadManager.getGamepad1().getRightTrigger().setPressedCommand(IntakeArm.INSTANCE::IntakeArmDown);
 
 
-        gamepadManager.getGamepad1().getX().setReleasedCommand(IntakeClaw.INSTANCE::toggle); // When pressed it triggers it so say open
-        gamepadManager.getGamepad1().getX().setPressedCommand(IntakeClaw.INSTANCE::toggle);  // Then when released it should close it
+        gamepadManager.getGamepad1().getX().setReleasedCommand(claw.INSTANCE::toggle); // When pressed it triggers it so say open
+        gamepadManager.getGamepad1().getX().setPressedCommand(claw.INSTANCE::toggle);  // Then when released it should close it
 //        gamepadManager.getGamepad1().getDpadUp().setPressedCommand(IntakeArm.INSTANCE::IntakeArmUp);
 //        gamepadManager.getGamepad1().getDpadDown().setPressedCommand(IntakeArm.INSTANCE::IntakeArmDown);
-        gamepadManager.getGamepad1().getRightBumper().setPressedCommand(IntakeSlide.INSTANCE::toggle);
+          // Then when released it should close it
 
-        gamepadManager.getGamepad1().getLeftBumper().setReleasedCommand(OuttakeClaw.INSTANCE::toggle); // When pressed it triggers it so say open
-        gamepadManager.getGamepad1().getLeftBumper().setPressedCommand(OuttakeClaw.INSTANCE::toggle);  // Then when released it should close it
+        gamepadManager.getGamepad1().getA().setPressedCommand(arm.INSTANCE::ramp);
+        gamepadManager.getGamepad1().getB().setPressedCommand(arm.INSTANCE::transfer);
+        gamepadManager.getGamepad1().getY().setPressedCommand(arm.INSTANCE::pickup);
 
-        gamepadManager.getGamepad1().getA().setPressedCommand(IntakeArm.INSTANCE::ramp);
-        gamepadManager.getGamepad1().getB().setPressedCommand(IntakeArm.INSTANCE::transfer);
-        gamepadManager.getGamepad1().getY().setPressedCommand(IntakeArm.INSTANCE::pickup);
-
-        gamepadManager.getGamepad1().getDpadUp().setPressedCommand(OuttakeSlide.INSTANCE::highChamber);
-        gamepadManager.getGamepad1().getDpadDown().setPressedCommand(OuttakeSlide.INSTANCE::transfer);
-        gamepadManager.getGamepad1().getDpadLeft().setPressedCommand(OuttakeSlide.INSTANCE::highBasket);
-        gamepadManager.getGamepad1().getDpadRight().setPressedCommand(OuttakeSlide.INSTANCE::placePosition);
-
-        gamepadManager.getGamepad2().getLeftStick().setHeldCommand((pos) -> OuttakeSlide.INSTANCE.move(pos.getSecond()));
         //gamepadManager.getGamepad2().getRightBumper().setPressedCommand(this::forwardCommand);
         //gamepadManager.getGamepad2().getLeftBumper().setPressedCommand(this::backCommand);
     }

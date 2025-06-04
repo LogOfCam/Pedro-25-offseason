@@ -8,11 +8,11 @@ import com.rowanmcalpin.nextftc.ftc.hardware.ServoToPosition;
 
 import java.util.Objects;
 
-public class IntakeClaw extends Subsystem {
-    public static final IntakeClaw INSTANCE = new IntakeClaw();
-    //private IntakeClaw() {}
+public class claw extends Subsystem {
+    public static final claw INSTANCE = new claw();
+    //private claw() {}
     public Servo servo;
-    public String name = "IntakeClaw";
+    public String name = "claw";
     public String state;
 
     public double IntakeClawOpen = 0.55;
@@ -26,7 +26,7 @@ public class IntakeClaw extends Subsystem {
 
     @Override
     public void periodic(){
-        OpModeData.telemetry.addData("IntakeClaw State", state);
+        OpModeData.telemetry.addData("claw State", state);
     }
 
     public Command open(){

@@ -8,12 +8,8 @@ import com.rowanmcalpin.nextftc.pedro.PedroOpMode;
 
 import nextFTC.TrajectoryBuilder;
 import nextFTC.routines.SpecimenRoutines;
-import nextFTC.routines.MechanismRoutines;
-import nextFTC.subsystems.IntakeArm;
-import nextFTC.subsystems.IntakeClaw;
-import nextFTC.subsystems.IntakeSlide;
-import nextFTC.subsystems.OuttakeClaw;
-import nextFTC.subsystems.OuttakeSlide;
+import nextFTC.subsystems.claw;
+import nextFTC.subsystems.arm;
 import pedroPathing.constants.FConstants;
 import pedroPathing.constants.LConstants;
 
@@ -23,11 +19,8 @@ public class SpecimenTestAuto extends PedroOpMode {
     private final LConstants lConstants = new LConstants();
 
     public SpecimenTestAuto(){
-        super(IntakeClaw.INSTANCE,
-                IntakeSlide.INSTANCE,
-                IntakeArm.INSTANCE,
-                OuttakeSlide.INSTANCE,
-                OuttakeClaw.INSTANCE);
+        super(claw.INSTANCE,
+                arm.INSTANCE);
     }
 
     @Override
@@ -41,18 +34,16 @@ public class SpecimenTestAuto extends PedroOpMode {
         }
         follower.setStartingPose(TrajectoryBuilder.startPosition);
 
-        IntakeArm.INSTANCE.resetEncoder();
-        OuttakeSlide.INSTANCE.resetEncoder();
+        arm.INSTANCE.resetEncoder();
 
-        IntakeClaw.INSTANCE.close().invoke();
-        OuttakeClaw.INSTANCE.close().invoke();
+        claw.INSTANCE.close().invoke();
 
         OpModeData.telemetry = telemetry;
     }
 
     @Override
     public void onWaitForStart() {
-        IntakeClaw.INSTANCE.close(); // Close claw
+        claw.INSTANCE.close(); // Close claw
         telemetry.update();
     }
 
