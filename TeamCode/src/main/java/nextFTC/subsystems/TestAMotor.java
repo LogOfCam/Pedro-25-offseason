@@ -19,7 +19,7 @@ public class TestAMotor extends Subsystem {
     public static double kF = 0.1;
     public static double threshold = 10;
 
-    public String name = "IntakeArm";
+    public String name = "arm";
 
     private MotorEx motor;
 
@@ -32,7 +32,7 @@ public class TestAMotor extends Subsystem {
     }
 
     public Command getTo1000() {
-        return new RunToPosition(motor, 200.0, controller, this);
+        return new RunToPosition(motor, 250.0, controller, this);
     }
 
     @Override
@@ -58,8 +58,8 @@ public class TestAMotor extends Subsystem {
             getToZero().invoke();
         }
 
-        OpModeData.telemetry.addData("IntakeArm Position", motor.getCurrentPosition());
-        OpModeData.telemetry.addData("IntakeArm Target", controller.getTarget());
+        OpModeData.telemetry.addData("arm Position", motor.getCurrentPosition());
+        OpModeData.telemetry.addData("arm Target", controller.getTarget());
     }
 
     public void resetEncoder() {
