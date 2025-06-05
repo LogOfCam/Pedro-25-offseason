@@ -1,6 +1,7 @@
 package nextFTC.subsystems;
 
 import com.acmerobotics.dashboard.config.Config;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.rowanmcalpin.nextftc.core.Subsystem;
 import com.rowanmcalpin.nextftc.core.command.Command;
 import com.rowanmcalpin.nextftc.core.control.controllers.PIDFController;
@@ -21,6 +22,7 @@ public class TestAMotor extends Subsystem {
 
     public String name = "arm";
 
+
     private MotorEx motor;
 
     private final PIDFController controller = new PIDFController(kP, kI, kD, (pos) -> kF, threshold);
@@ -39,6 +41,7 @@ public class TestAMotor extends Subsystem {
     public void initialize() {
         motor = new MotorEx(name);
     }
+
 
 
 //    @NonNull

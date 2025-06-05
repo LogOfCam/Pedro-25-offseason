@@ -38,7 +38,6 @@ public class Teleop extends PedroOpMode {
     public void onInit() {
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
         OpModeData.telemetry = telemetry;
-
         mecanumDriveInit();
         telemetry.update();
     }

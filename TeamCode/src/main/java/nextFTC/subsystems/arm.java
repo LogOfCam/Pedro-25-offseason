@@ -3,6 +3,7 @@ package nextFTC.subsystems;
 import androidx.annotation.NonNull;
 
 import com.acmerobotics.dashboard.config.Config;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.rowanmcalpin.nextftc.core.Subsystem;
 import com.rowanmcalpin.nextftc.core.command.Command;
 import com.rowanmcalpin.nextftc.core.control.controllers.PIDFController;
@@ -27,15 +28,16 @@ public class arm extends Subsystem {
     public static double threshold = 30;
 
     public String name = "arm";
-
     private MotorEx motor;
 
     private final PIDFController controller = new PIDFController(kP, kI, kD, (pos) -> kF, threshold);
-
     public double pickupPosition = 475;
     public double transferPosition = -20;
     public double ramp = -140;
     public double clip2Position = -300;
+
+
+
     //    public Command IntakeArmUp() {
 //        return new RunToPosition(motor,motor.getCurrentPosition()+20, controller, this);
 //    }
@@ -51,6 +53,7 @@ public class arm extends Subsystem {
     @Override
     public void initialize() {
         motor = new MotorEx(name);
+        arm.setDirection(DcMotorSimple.Direction.REVERSE);
     }
 
     @NonNull
