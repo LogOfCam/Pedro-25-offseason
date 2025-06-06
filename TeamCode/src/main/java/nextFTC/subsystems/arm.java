@@ -53,7 +53,7 @@ public class arm extends Subsystem {
     @Override
     public void initialize() {
         motor = new MotorEx(name);
-        arm.setDirection(DcMotorSimple.Direction.REVERSE);
+        motor.setDirection(DcMotorSimple.Direction.REVERSE);
     }
 
     @NonNull

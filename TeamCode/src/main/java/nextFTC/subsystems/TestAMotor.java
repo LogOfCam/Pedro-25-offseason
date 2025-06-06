@@ -14,10 +14,10 @@ public class TestAMotor extends Subsystem {
 
     public static final TestAMotor INSTANCE = new TestAMotor();
 
-    public static double kP = 0.01;
-    public static double kI = 0.0;
-    public static double kD = 0.00015;
-    public static double kF = 0.1;
+    public static double kP = 0;
+    public static double kI = 0;
+    public static double kD = 0;
+    public static double kF = 0;
     public static double threshold = 10;
 
     public String name = "arm";
@@ -30,7 +30,7 @@ public class TestAMotor extends Subsystem {
     public static boolean zero = false;
 
     public Command getToZero() {
-        return new RunToPosition(motor, 0.0, controller, this);
+        return new RunToPosition(motor, 75, controller, this);
     }
 
     public Command getTo1000() {
@@ -40,6 +40,7 @@ public class TestAMotor extends Subsystem {
     @Override
     public void initialize() {
         motor = new MotorEx(name);
+        motor.setDirection(DcMotorSimple.Direction.REVERSE);
     }
 
 
