@@ -30,17 +30,16 @@ public class TestAMotor extends Subsystem {
     public static boolean zero = false;
 
     public Command getToZero() {
-        return new RunToPosition(motor, 75, controller, this);
+        return new RunToPosition(motor, 0, controller, this);
     }
 
     public Command getTo1000() {
-        return new RunToPosition(motor, 250.0, controller, this);
+        return new RunToPosition(motor, 1000.0, controller, this);
     }
 
     @Override
     public void initialize() {
         motor = new MotorEx(name);
-        motor.setDirection(DcMotorSimple.Direction.REVERSE);
     }
 
 
