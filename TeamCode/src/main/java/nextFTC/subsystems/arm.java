@@ -22,7 +22,7 @@ public class arm extends Subsystem {
 
     public static double kP = 0.001;
     public static double kI = 0.0;
-    public static double kD = 0.0007;
+    public static double kD = 0.0001;
     public static double kF = 0.015;
     public static double target = 0.0;
     public static double threshold = 30;
