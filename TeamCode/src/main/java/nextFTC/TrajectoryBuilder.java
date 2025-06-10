@@ -21,14 +21,15 @@ public class TrajectoryBuilder {
 
 
     //   SpecimenTestAuto
-    public static final Pose startPosition = new Pose(5.5, 63.5, Math.toRadians(0));
-    public static final Pose preparePush1 = new Pose(55, 23.5, Math.toRadians(0));
-    public static final Point curve1 = new Point(6, 8.5);
-    public static final Point curve2 = new Point(87, 51);
-    public static final Pose push1 = new Pose(22.5,21.5, Math.toRadians(0));
-    public static final Pose PrepareToPush2 = new Pose(59, 13, Math.toRadians(0));
-    public static final Point curve3 = new Point(71,30.5);
-    public static final Pose push2 = new Pose(21.5,13.5, Math.toRadians(0));
+    public static final Pose startPosition = new Pose(9.5, 58, Math.toRadians(0));
+    public static final Pose positionPlace1 = new Pose(36.5, 63.5, Math.toRadians(0));
+    public static final Pose preparePush1 = new Pose(69.5, 22, Math.toRadians(0));
+    public static final Point curve1 = new Point(9, 0.8);
+    public static final Point curve2 = new Point(73, 47.5);
+    public static final Pose push1 = new Pose(18.5,18, Math.toRadians(0));
+    public static final Pose PrepareToPush2 = new Pose(61.5, 16, Math.toRadians(0));
+    public static final Point curve3 = new Point(74.5,19);
+    public static final Pose push2 = new Pose(22,6.5, Math.toRadians(0));
 
 
     public static PathChain startToPlace, placeToPickup1, clip1, pickupPosition2, clip2;
@@ -82,14 +83,14 @@ public class TrajectoryBuilder {
         firstSpecimen = follower.pathBuilder()
                 .addPath(
                         new BezierLine(
-                                new Point(startPosition), new Point(placePosition1)
+                                new Point(startPosition), new Point(positionPlace1)
                         )
                 ).setConstantHeadingInterpolation(startPosition.getHeading())
                 .addPath(
                         new BezierCurve(
-                                new Point(placePosition1), curve1, curve2, new Point(preparePush1)
+                                new Point(positionPlace1), curve1, curve2, new Point(preparePush1)
                         )
-                ).setConstantHeadingInterpolation(placePosition1.getHeading())
+                ).setConstantHeadingInterpolation(positionPlace1.getHeading())
                 .addPath(
                         new BezierLine(
                                 new Point(preparePush1), new Point(push1)
