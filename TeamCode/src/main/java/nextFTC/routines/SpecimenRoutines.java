@@ -52,39 +52,10 @@ public class SpecimenRoutines {
                 new FollowPath(TrajectoryBuilder.clip2, true, 1.0)
         );
     }
-
-
-
-
-
-
-
     // SpecimenTestAuto
-    public static Command firstSpecimen() {
+    public static Command StartPosition() {
         return new ParallelGroup(
-                new FollowPath(TrajectoryBuilder.firstSpecimen, true, 1.0)
-        );
-    }
-    public static Command PreparePush1() {
-        return new SequentialGroup(
-                claw.INSTANCE.open(),
-                new Delay(0.5),
-                new FollowPath(TrajectoryBuilder.PreparePush1, true, 0.5)
-                );
-   }
-    public static Command Push1() {
-        return new SequentialGroup(
-                new FollowPath(TrajectoryBuilder.Push1, true, 1.0)
-        );
-    }
-    public static Command PreparePush2() {
-        return new SequentialGroup(
-                new FollowPath(TrajectoryBuilder.prepareToPush2, true, 1.0)
-        );
-    }
-    public static Command Push2() {
-        return new SequentialGroup(
-                new FollowPath(TrajectoryBuilder.Push2, true, 1.0)
+                new FollowPath(TrajectoryBuilder.StartPosition, true, 1.0)
         );
     }
 }
