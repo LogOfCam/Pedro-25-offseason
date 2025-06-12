@@ -108,5 +108,11 @@ public class TrajectoryBuilder {
                                 new Point(prepareToPush2), new Point(push2)
                         )
                 ).setConstantHeadingInterpolation(prepareToPush2.getHeading()).build();
+        Push2 = follower.pathBuilder()
+                .addPath(
+                        new BezierLine(
+                                new Point(push2),new Point(prepareToPush2)
+                        )
+                ).setConstantHeadingInterpolation(push2.getHeading()).build();
     }
 }
