@@ -58,4 +58,24 @@ public class SpecimenRoutines {
                 new FollowPath(TrajectoryBuilder.StartPosition, true, 1.0)
         );
     }
+    public static Command PreparePush1() {
+        return new ParallelGroup(
+                new FollowPath(TrajectoryBuilder.PreparePush1, true, 1.0)
+        );
+    }
+    public static Command Push1() {
+        return new ParallelGroup(
+                new FollowPath(TrajectoryBuilder.Push1, true, 1.0)
+        );
+    }
+    public static Command PrepareToPush2() {
+        return new ParallelGroup(
+                new FollowPath(TrajectoryBuilder.PrepareToPush2, true, 1.0)
+        );
+    }
+    public static Command Push2() {
+        return new ParallelGroup(
+                new FollowPath(TrajectoryBuilder.Push2, true, 1.0)
+        );
+    }
 }
