@@ -21,14 +21,15 @@ public class TrajectoryBuilder {
 
 
     //   SpecimenTestAuto
-    public static final Pose startPosition = new Pose(9, 58.5, Math.toRadians(0));
-    public static final Pose positionPlace1 = new Pose(35, 63.5, Math.toRadians(0));
-    public static final Point curve1 = new Point(9, 0.8);
-    public static final Point curve2 = new Point(73, 47.5);
-    public static final Pose preparePush1 = new Pose(64, 17.5, Math.toRadians(0));
-    public static final Pose push1 = new Pose(18.5, 18, Math.toRadians(0));
-    public static final Pose prepareToPush2 = new Pose(69, 11.5, Math.toRadians(0));
-    public static final Pose push2 = new Pose(22, 6.5, Math.toRadians(0));
+    public static final Pose startPosition = new Pose(9, 70, Math.toRadians(0));
+    public static final Pose positionPlace1 = new Pose(30, 70, Math.toRadians(0));
+    public static final Point curve1 = new Point(4.5, 3.5);
+    public static final Point curve2 = new Point(77.5, 56.5);
+    public static final Pose preparePush1 = new Pose(55, 25, Math.toRadians(0));
+    public static final Pose push1 = new Pose(19.5, 25, Math.toRadians(0));
+    public static final Pose prepareToPush2 = new Pose(55, 14, Math.toRadians(0));
+    public static final Point curve3 = new Point(80, 28.5);
+    public static final Pose push2 = new Pose(20, 14, Math.toRadians(0));
 
 
     public static PathChain startToPlace, placeToPickup1, clip1, pickupPosition2, clip2;
@@ -98,8 +99,8 @@ public class TrajectoryBuilder {
                 ).setConstantHeadingInterpolation(preparePush1.getHeading()).build();
         Push1 = follower.pathBuilder()
                 .addPath(
-                        new BezierLine(
-                                new Point(push1),new Point(prepareToPush2)
+                        new BezierCurve(
+                                new Point(push1),curve3,new Point(prepareToPush2)
                         )
                 ).setConstantHeadingInterpolation(push1.getHeading()).build();
         PrepareToPush2 = follower.pathBuilder()
