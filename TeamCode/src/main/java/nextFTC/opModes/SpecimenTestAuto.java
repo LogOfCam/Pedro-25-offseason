@@ -7,6 +7,7 @@ import com.rowanmcalpin.nextftc.ftc.OpModeData;
 import com.rowanmcalpin.nextftc.pedro.PedroOpMode;
 
 import nextFTC.TrajectoryBuilder;
+import nextFTC.routines.MechanismRoutines;
 import nextFTC.routines.SpecimenRoutines;
 import nextFTC.subsystems.claw;
 import nextFTC.subsystems.arm;
@@ -59,6 +60,7 @@ public class SpecimenTestAuto extends PedroOpMode {
         CommandManager.INSTANCE.scheduleCommand(
                 new SequentialGroup(
                         SpecimenRoutines.StartPosition(),
+                        SpecimenRoutines.PlacePosition1(),
                         SpecimenRoutines.PreparePush1(),
                         SpecimenRoutines.Push1(),
                         SpecimenRoutines.PrepareToPush2()

@@ -34,17 +34,17 @@ public class arm extends Subsystem {
     public double pickupPosition = 475;
     public double transferPosition = -20;
     public double ramp = -140;
-    public double clip2Position = -300;
+    public double place = -300;
 
 
 
-        public Command armUp() {
-        return new RunToPosition(motor,motor.getCurrentPosition()+100, controller, this);
-    }
-    public Command armDown() {
-        return new RunToPosition(motor,motor.getCurrentPosition()-100, controller, this);
-    }
-    public Command pickup() { return new RunToPosition(motor, pickupPosition, controller, this); }
+//        public Command armUp() {
+//        return new RunToPosition(motor,motor.getCurrentPosition()+100, controller, this);
+//    }
+//    public Command armDown() {
+//        return new RunToPosition(motor,motor.getCurrentPosition()-100, controller, this);
+//    }
+    public Command place() { return new RunToPosition(motor, pickupPosition, controller, this); }
     public Command transfer() { return new RunToPosition(motor, transferPosition, controller, this); }
     public Command ramp() {
         return new RunToPosition(motor, ramp, controller, this);
