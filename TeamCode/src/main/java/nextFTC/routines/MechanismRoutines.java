@@ -11,11 +11,9 @@ import nextFTC.subsystems.claw;
 public class MechanismRoutines {
     private MechanismRoutines() {
     }
-//        public static Command place () {
-//            return new SequentialGroup(
-//                    arm.INSTANCE.transfer(),
-//                    claw.INSTANCE.open()
-//            );
-//
-//        }
+        public static Command place () {
+            return new SequentialGroup(
+                    arm.INSTANCE.preparePlace()
+            );
+        }
     }

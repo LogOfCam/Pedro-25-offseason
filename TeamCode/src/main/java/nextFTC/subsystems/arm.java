@@ -20,7 +20,7 @@ public class arm extends Subsystem {
 
     public static final arm INSTANCE = new arm();
 
-    public static double kP = 0.001;
+    public static double kP = 0.0015;
     public static double kI = 0.0;
     public static double kD = 0.0001;
     public static double kF = 0.015;
@@ -33,6 +33,7 @@ public class arm extends Subsystem {
     private final PIDFController controller = new PIDFController(kP, kI, kD, (pos) -> kF, threshold);
     public double pickupPosition = 475;
     public double transferPosition = -20;
+    public double preparePlace = -1250;
     public double ramp = -140;
     public double pickup = -300;
 
@@ -44,6 +45,7 @@ public class arm extends Subsystem {
 //    public Command armDown() {
 //        return new RunToPosition(motor,motor.getCurrentPosition()-100, controller, this);
 //    }
+    public Command preparePlace() { return new RunToPosition(motor, preparePlace, controller, this); }
     public Command pickup() { return new RunToPosition(motor, pickupPosition, controller, this); }
     public Command transfer() { return new RunToPosition(motor, transferPosition, controller, this); }
     public Command ramp() {
