@@ -20,12 +20,12 @@ public class arm extends Subsystem {
 
     public static final arm INSTANCE = new arm();
 
-    public static double kP = 0.0015;
+    public static double kP = 0.0025;
     public static double kI = 0.0;
     public static double kD = 0.0001;
     public static double kF = 0.015;
     public static double target = 0.0;
-    public static double threshold = 30;
+    public static double threshold = 40;
 
     public String name = "arm";
     private MotorEx motor;
@@ -35,6 +35,7 @@ public class arm extends Subsystem {
     public double transferPosition = -20;
     public double preparePlace = -1250;
     public double ramp = -140;
+    public double armPlace = -1375;
     public double pickup = -300;
 
 
@@ -47,6 +48,7 @@ public class arm extends Subsystem {
 //    }
     public Command preparePlace() { return new RunToPosition(motor, preparePlace, controller, this); }
     public Command pickup() { return new RunToPosition(motor, pickupPosition, controller, this); }
+    public Command armPlace() { return new RunToPosition(motor, armPlace, controller, this); }
     public Command transfer() { return new RunToPosition(motor, transferPosition, controller, this); }
     public Command ramp() {
         return new RunToPosition(motor, ramp, controller, this);

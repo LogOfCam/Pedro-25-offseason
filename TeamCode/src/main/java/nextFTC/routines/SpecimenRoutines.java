@@ -60,7 +60,9 @@ public class SpecimenRoutines {
 
     public static Command StartPosition() {
         return new ParallelGroup(
-                new FollowPath(TrajectoryBuilder.StartPosition, true, 1.0)
+                MechanismRoutines.preparePlace(),
+                new FollowPath(TrajectoryBuilder.StartPosition, true, 1.0),
+                MechanismRoutines.place1Position()
         );
     }
     public static Command PlacePosition1() {
