@@ -10,7 +10,7 @@ import java.util.Objects;
 
 public class claw extends Subsystem {
     public static final claw INSTANCE = new claw();
-    //private claw() {}
+   // private claw() {}
     public Servo servo;
     public String name = "claw";
     public String state;
@@ -25,9 +25,7 @@ public class claw extends Subsystem {
     }
 
     @Override
-    public void periodic(){
-        OpModeData.telemetry.addData("claw State", state);
-    }
+    public void periodic(){OpModeData.telemetry.addData("claw State", state);}
 
     public Command open(){
         state = "OPEN";

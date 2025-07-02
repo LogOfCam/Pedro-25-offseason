@@ -61,12 +61,12 @@ public class SpecimenRoutines {
     public static Command StartPosition() {
         return new ParallelGroup(
                 MechanismRoutines.preparePlace(),
-                new FollowPath(TrajectoryBuilder.StartPosition, true, 1.0),
-                MechanismRoutines.place1Position()
+                new FollowPath(TrajectoryBuilder.StartPosition, true, 1.0)
         );
     }
     public static Command PlacePosition1() {
         return new ParallelGroup(
+                MechanismRoutines.place1Position(),
                 new FollowPath(TrajectoryBuilder.PlacePosition1, true, 1.0)
         );
     }
