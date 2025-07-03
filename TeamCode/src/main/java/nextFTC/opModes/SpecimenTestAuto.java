@@ -61,6 +61,7 @@ public class SpecimenTestAuto extends PedroOpMode {
                 new SequentialGroup(
                         SpecimenRoutines.StartPosition(),
                         SpecimenRoutines.PlacePosition1(),
+                        SpecimenRoutines.Place1(),
                         SpecimenRoutines.PreparePush1(),
                         SpecimenRoutines.Push1(),
                         SpecimenRoutines.PrepareToPush2()

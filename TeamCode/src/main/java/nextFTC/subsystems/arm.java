@@ -35,7 +35,7 @@ public class arm extends Subsystem {
     public double transferPosition = -20;
     public double preparePlace = -1200;
     public double ramp = -140;
-    public double armPlace = -1350;
+    public double armPlace = -1450;
     public double pickup = -300;
 
 

@@ -10,13 +10,13 @@ import java.util.Objects;
 
 public class claw extends Subsystem {
     public static final claw INSTANCE = new claw();
-   // private claw() {}
+    private claw() {}
     public Servo servo;
     public String name = "claw";
     public String state;
 
     public double IntakeClawOpen = 0.55;
-    public double IntakeClawClosed = 0.72;
+    public double IntakeClawClosed = 0.696;
 
     @Override
     public void initialize(){

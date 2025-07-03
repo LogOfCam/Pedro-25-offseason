@@ -23,18 +23,19 @@ public class TrajectoryBuilder {
     //   SpecimenTestAuto
     public static final Pose startPosition = new Pose(9, 70, Math.toRadians(0));
     public static final Pose positionPlace1 = new Pose(36, 70, Math.toRadians(0));
+    public static final Pose place1 = new Pose(30,70, Math.toRadians(0));
     public static final Point curve1 = new Point(4.5, 3.5);
     public static final Point curve2 = new Point(77.5, 56.5);
     public static final Pose preparePush1 = new Pose(55, 25, Math.toRadians(0));
     public static final Pose push1 = new Pose(19.5, 22, Math.toRadians(0));
-    public static final Pose prepareToPush2 = new Pose(55, 14, Math.toRadians(0));
+    public static final Pose prepareToPush2 = new Pose(55, 18, Math.toRadians(0));
     public static final Point curve3 = new Point(80, 28.5);
     public static final Pose push2 = new Pose(20, 14, Math.toRadians(0));
 
 
     public static PathChain startToPlace, placeToPickup1, clip1, pickupPosition2, clip2;
     //      SpecimenTestAuto
-    public static PathChain StartPosition,PlacePosition1, PreparePush1, Push1, PrepareToPush2;
+    public static PathChain StartPosition,PlacePosition1,Place1, PreparePush1, Push1, PrepareToPush2;
 
     public static void buildBucketPaths(Follower follower) {
         if (follower == null) {
@@ -89,9 +90,15 @@ public class TrajectoryBuilder {
         PlacePosition1 = follower.pathBuilder()
                 .addPath(
                         new BezierCurve(
-                                new Point(positionPlace1), curve1, curve2,  new Point(preparePush1)
+                                new Point(positionPlace1),new Point(place1)
                         )
                 ).setConstantHeadingInterpolation(positionPlace1.getHeading()).build();
+                        Place1 = follower.pathBuilder()
+                                .addPath(
+                                        new BezierCurve(
+                                                new Point(place1), curve1, curve2,  new Point(preparePush1)
+                                        )
+                                ).setConstantHeadingInterpolation(place1.getHeading()).build();
         PreparePush1 = follower.pathBuilder()
                 .addPath(
                         new BezierLine(

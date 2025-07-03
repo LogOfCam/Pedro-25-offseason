@@ -70,6 +70,12 @@ public class SpecimenRoutines {
                 new FollowPath(TrajectoryBuilder.PlacePosition1, true, 1.0)
         );
     }
+    public static Command Place1() {
+        return new SequentialGroup(
+                new FollowPath(TrajectoryBuilder.Place1, true, 1.0),
+                MechanismRoutines.clawOpen()
+        );
+    }
     public static Command PreparePush1() {
         return new ParallelGroup(
                 new FollowPath(TrajectoryBuilder.PreparePush1, true, 1.0)
