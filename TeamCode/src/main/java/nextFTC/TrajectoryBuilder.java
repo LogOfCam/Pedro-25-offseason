@@ -23,7 +23,7 @@ public class TrajectoryBuilder {
     //   SpecimenTestAuto
     public static final Pose startPosition = new Pose(9, 70, Math.toRadians(0));
     public static final Pose positionPlace1 = new Pose(36, 70, Math.toRadians(0));
-    public static final Pose place1 = new Pose(30,70, Math.toRadians(0));
+    public static final Pose place1 = new Pose(33,70, Math.toRadians(0));
     public static final Point curve1 = new Point(4.5, 3.5);
     public static final Point curve2 = new Point(77.5, 56.5);
     public static final Pose preparePush1 = new Pose(55, 25, Math.toRadians(0));
