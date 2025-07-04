@@ -33,7 +33,6 @@ public class SpecimenAuto extends PedroOpMode {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        follower.setStartingPose(TrajectoryBuilder.startPose);
 
         arm.INSTANCE.resetEncoder();
 
@@ -59,11 +58,9 @@ public class SpecimenAuto extends PedroOpMode {
 
         CommandManager.INSTANCE.scheduleCommand(
                 new SequentialGroup(
-                        SpecimenRoutines.firstSample(),
-                        SpecimenRoutines.pickup1(),
-                        SpecimenRoutines.clip1(),
-                        SpecimenRoutines.pickupPosition2(),
-                        SpecimenRoutines.clip2()
+                        SpecimenRoutines.StartPosition(),
+                        SpecimenRoutines.PlacePosition1(),
+                        SpecimenRoutines.Place1()
                 )
         );
     }
