@@ -94,14 +94,14 @@ public class Teleop extends PedroOpMode {
         //gamepadManager.getGamepad1().getRightBumper().setPressedCommand(this::specimenNextStep);
         //gamepadManager.getGamepad1().getLeftBumper().setPressedCommand(this::specimenPreviousStep);
         //gamepadManager.getGamepad1().getA().setPressedCommand(this::toggleSpeed);
-        //gamepadManager.getGamepad1().getLeftTrigger().setPressedCommand(IntakeArm.INSTANCE::IntakeArmUp);
-        //gamepadManager.getGamepad1().getRightTrigger().setPressedCommand(IntakeArm.INSTANCE::IntakeArmDown);
+        gamepadManager.getGamepad1().getRightTrigger().setHeldCommand(arm.INSTANCE::armUp);
+        gamepadManager.getGamepad1().getLeftTrigger().setHeldCommand(arm.INSTANCE::armDown);
 
 
         gamepadManager.getGamepad1().getX().setReleasedCommand(claw.INSTANCE::toggle); // When pressed it triggers it so say open
         gamepadManager.getGamepad1().getX().setPressedCommand(claw.INSTANCE::toggle);  // Then when released it should close it
-//        gamepadManager.getGamepad1().getDpadUp().setPressedCommand(arm.INSTANCE::armUp);
-//        gamepadManager.getGamepad1().getDpadDown().setPressedCommand(arm.INSTANCE::armDown);
+        gamepadManager.getGamepad1().getDpadUp().setHeldCommand(arm.INSTANCE::armUp);
+        gamepadManager.getGamepad1().getDpadDown().setHeldCommand(arm.INSTANCE::armDown);
           // Then when released it should close it
 
 //        gamepadManager.getGamepad1().getA().setPressedCommand(arm.INSTANCE::ramp);

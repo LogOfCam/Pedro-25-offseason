@@ -40,12 +40,12 @@ public class arm extends Subsystem {
 
 
 
-//        public Command armUp() {
-//        return new RunToPosition(motor,motor.getCurrentPosition()+100, controller, this);
-//    }
-//    public Command armDown() {
-//        return new RunToPosition(motor,motor.getCurrentPosition()-100, controller, this);
-//    }
+        public Command armUp() {
+        return new RunToPosition(motor,motor.getCurrentPosition()+100, controller, this);
+    }
+    public Command armDown() {
+        return new RunToPosition(motor,motor.getCurrentPosition()-100, controller, this);
+    }
     public Command preparePlace() { return new RunToPosition(motor, preparePlace, controller, this); }
     public Command pickup() { return new RunToPosition(motor, pickupPosition, controller, this); }
     public Command armPlace() { return new RunToPosition(motor, armPlace, controller, this); }
