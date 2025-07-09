@@ -36,7 +36,7 @@ public class arm extends Subsystem {
     public double preparePlace = -1200;
     public double ramp = -140;
     public double armPlace = -1450;
-    public double pickup = -300;
+    public double Pickup = -600;
 
 
 
@@ -53,7 +53,7 @@ public class arm extends Subsystem {
         return new RunToPosition(motor, motor.getCurrentPosition() -200, controller, this);
     }
     public Command preparePlace() { return new RunToPosition(motor, preparePlace, controller, this); }
-    public Command pickup() { return new RunToPosition(motor, pickupPosition, controller, this); }
+    public Command Pickup() { return new RunToPosition(motor, Pickup, controller, this); }
     public Command armPlace() { return new RunToPosition(motor, armPlace, controller, this); }
     public Command transfer() { return new RunToPosition(motor, transferPosition, controller, this); }
     public Command ramp() {
