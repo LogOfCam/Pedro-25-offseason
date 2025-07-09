@@ -55,7 +55,7 @@ public class arm extends Subsystem {
     public Command preparePlace() { return new RunToPosition(motor, preparePlace, controller, this); }
     public Command pickup() { return new RunToPosition(motor, Pickup, controller, this); }
     public Command armPlace() { return new RunToPosition(motor, armPlace, controller, this); }
-    public Command transfer() { return new RunToPosition(motor, transferPosition, controller, this); }
+    public Command transfer() { return new RunToPosition(motor, transferPosition, controller, this);  }
     public Command ramp() {
         return new RunToPosition(motor, ramp, controller, this);
     }
