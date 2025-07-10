@@ -3,6 +3,7 @@ package nextFTC.routines;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.rowanmcalpin.nextftc.core.command.Command;
+import com.rowanmcalpin.nextftc.core.command.groups.ParallelGroup;
 import com.rowanmcalpin.nextftc.core.command.groups.SequentialGroup;
 
 
@@ -27,5 +28,11 @@ public class MechanismRoutines {
                 return new SequentialGroup(
                         claw.INSTANCE.open()
                 );
+            }
+                public static Command pickupSpecimen() {
+                    return new ParallelGroup(
+                            arm.INSTANCE.Pickup(),
+                            claw.INSTANCE.open()
+                    );
         }
 }

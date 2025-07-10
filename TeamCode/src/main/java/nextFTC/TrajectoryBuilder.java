@@ -31,11 +31,13 @@ public class TrajectoryBuilder {
     public static final Pose prepareToPush2 = new Pose(56, 13, Math.toRadians(0));
     public static final Point curve3 = new Point(80, 28.5);
     public static final Pose push2 = new Pose(20, 14, Math.toRadians(0));
+    public static final Pose preparePickupSpecimen1 = new Pose(24.5, 50.5, Math.toRadians(50));
+    public static final Pose pickupSpecimen1 = new Pose(19.5, 45.5, Math.toRadians(50));
 
 
     public static PathChain startToPlace, placeToPickup1, clip1, pickupPosition2, clip2;
     //      SpecimenTestAuto
-    public static PathChain StartPosition,PlacePosition1,Place1, PreparePush1, Push1, PrepareToPush2;
+    public static PathChain StartPosition,PlacePosition1,Place1, PreparePush1, Push1, PrepareToPush2,PreparePickupSpecimen1,PickupSpecimen1;
 
     public static void buildBucketPaths(Follower follower) {
         if (follower == null) {
@@ -117,5 +119,17 @@ public class TrajectoryBuilder {
                                 new Point(prepareToPush2), new Point(push2)
                         )
                 ).setConstantHeadingInterpolation(prepareToPush2.getHeading()).build();
-    }
+        PreparePickupSpecimen1= follower.pathBuilder()
+                .addPath(
+                        new BezierLine(
+                                new Point(push2), new Point(preparePickupSpecimen1)
+                        )
+                ).setConstantHeadingInterpolation(preparePickupSpecimen1.getHeading()).build();
+    PickupSpecimen1= follower.pathBuilder()
+            .addPath(
+                        new BezierLine(
+            new Point(preparePickupSpecimen1), new Point(pickupSpecimen1)
+                        )
+                                ).setConstantHeadingInterpolation(pickupSpecimen1.getHeading()).build();
+}
 }

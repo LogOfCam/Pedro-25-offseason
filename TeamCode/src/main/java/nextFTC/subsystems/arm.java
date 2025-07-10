@@ -26,7 +26,7 @@ public class arm extends Subsystem {
     public static double kD = 0.0001;
     public static double kF = 0.015;
     public static double target = 0.0;
-    public static double threshold = 30;
+    public static double threshold = 35;
 
     public String name = "arm";
     private MotorEx motor;
@@ -37,6 +37,7 @@ public class arm extends Subsystem {
     public double ramp = -1500;
     public double armPlace = -1450;
     public double Pickup = -4750;
+    public double pickup = -4950;
 
 
 
@@ -53,7 +54,8 @@ public class arm extends Subsystem {
         return new RunToPosition(motor, motor.getCurrentPosition() -200, controller, this);
     }
     public Command preparePlace() { return new RunToPosition(motor, preparePlace, controller, this); }
-    public Command pickup() { return new RunToPosition(motor, Pickup, controller, this); }
+    public Command pickup() { return new RunToPosition(motor, Pickup, controller, this);}
+    public Command Pickup() { return new RunToPosition(motor, pickup, controller, this);}
     public Command armPlace() { return new RunToPosition(motor, armPlace, controller, this); }
     public Command transfer() { return new RunToPosition(motor, transferPosition, controller, this);  }
     public Command ramp() {
