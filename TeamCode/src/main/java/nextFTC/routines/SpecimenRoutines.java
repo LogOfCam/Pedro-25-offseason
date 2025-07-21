@@ -4,6 +4,7 @@ import com.rowanmcalpin.nextftc.core.command.Command;
 import com.rowanmcalpin.nextftc.core.command.groups.ParallelGroup;
 import com.rowanmcalpin.nextftc.core.command.groups.SequentialGroup;
 import com.rowanmcalpin.nextftc.core.command.utility.delays.Delay;
+import com.rowanmcalpin.nextftc.core.units.TimeSpan;
 import com.rowanmcalpin.nextftc.pedro.FollowPath;
 
 import nextFTC.TrajectoryBuilder;
@@ -48,15 +49,22 @@ public class SpecimenRoutines {
         );
     }
     public static Command PreparePickupSpecimen1() {
-        return new ParallelGroup(
+        return new SequentialGroup(
                 new FollowPath(TrajectoryBuilder.PreparePickupSpecimen1, true, 1.0),
-                MechanismRoutines.pickupSpecimen()
+                MechanismRoutines.pickupSpecimen(),
+               new Delay(TimeSpan.fromSec(0.5))
         );
     }
     public static Command PickupSpecimen1() {
         return new SequentialGroup(
                 new FollowPath(TrajectoryBuilder.PickupSpecimen1, true, 1.0),
                 claw.INSTANCE.close()
+        );
+    }
+    public static Command PlaceSpecimen2() {
+        return new ParallelGroup(
+                new FollowPath(TrajectoryBuilder.PlaceSpecimen2, true, 1.0),
+                MechanismRoutines.preparePlace()
         );
     }
 }

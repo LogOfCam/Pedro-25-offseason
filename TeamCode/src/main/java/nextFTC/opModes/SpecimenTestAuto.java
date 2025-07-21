@@ -66,7 +66,8 @@ public class SpecimenTestAuto extends PedroOpMode {
                         SpecimenRoutines.Push1(),
                         SpecimenRoutines.PrepareToPush2(),
                         SpecimenRoutines.PreparePickupSpecimen1(),
-                        SpecimenRoutines.PickupSpecimen1()
+                        SpecimenRoutines.PickupSpecimen1(),
+                        SpecimenRoutines.PlaceSpecimen2()
 
                 )
         );
