@@ -35,4 +35,9 @@ public class MechanismRoutines {
                             claw.INSTANCE.open()
                     );
         }
+    public static Command clawClose() {
+        return new SequentialGroup(
+                claw.INSTANCE.close()
+        );
+    }
 }

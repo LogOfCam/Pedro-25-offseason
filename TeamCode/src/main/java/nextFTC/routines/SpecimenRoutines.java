@@ -56,9 +56,9 @@ public class SpecimenRoutines {
         );
     }
     public static Command PickupSpecimen1() {
-        return new SequentialGroup(
+        return new ParallelGroup(
                 new FollowPath(TrajectoryBuilder.PickupSpecimen1, true, 1.0),
-                claw.INSTANCE.close()
+                MechanismRoutines.clawClose()
         );
     }
     public static Command PlaceSpecimen2() {
