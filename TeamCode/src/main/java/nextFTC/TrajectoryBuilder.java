@@ -33,12 +33,13 @@ public class TrajectoryBuilder {
     public static final Pose push2 = new Pose(20, 14, Math.toRadians(0));
     public static final Pose preparePickupSpecimen1 = new Pose(24.5, 50.5, Math.toRadians(50));
     public static final Pose pickupSpecimen1 = new Pose(19.5, 45.5, Math.toRadians(50));
-    public static final Pose placeSpecimen2 = new Pose(30, 67, Math.toRadians(0));
+    public static final Pose preparePlaceSpecimen2 = new Pose(38, 67, Math.toRadians(0));
+    public static final Pose placeSpecimen2 = new Pose(35, 67, Math.toRadians(0));
 
 
     public static PathChain startToPlace, placeToPickup1, clip1, pickupPosition2, clip2;
     //      SpecimenTestAuto
-    public static PathChain StartPosition,PlacePosition1,Place1, PreparePush1, Push1, PrepareToPush2,PreparePickupSpecimen1,PickupSpecimen1,PlaceSpecimen2;
+    public static PathChain StartPosition,PlacePosition1,Place1, PreparePush1, Push1, PrepareToPush2,PreparePickupSpecimen1,PickupSpecimen1,PreparePlaceSpecimen2,PlaceSpecimen2;
 
     public static void buildBucketPaths(Follower follower) {
         if (follower == null) {
@@ -132,11 +133,18 @@ public class TrajectoryBuilder {
             new Point(preparePickupSpecimen1), new Point(pickupSpecimen1)
                         )
                                 ).setConstantHeadingInterpolation(pickupSpecimen1.getHeading()).build();
+        PreparePlaceSpecimen2= follower.pathBuilder()
+                .addPath(
+                        new BezierLine(
+                                new Point(pickupSpecimen1), new Point(preparePlaceSpecimen2)
+                        )
+                ).setConstantHeadingInterpolation(preparePlaceSpecimen2.getHeading()).build();
         PlaceSpecimen2= follower.pathBuilder()
                 .addPath(
                         new BezierLine(
-                                new Point(pickupSpecimen1), new Point(placeSpecimen2)
+                                new Point(preparePlaceSpecimen2), new Point(placeSpecimen2)
                         )
                 ).setConstantHeadingInterpolation(placeSpecimen2.getHeading()).build();
-}
+
+    }
 }

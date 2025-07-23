@@ -56,15 +56,21 @@ public class SpecimenRoutines {
         );
     }
     public static Command PickupSpecimen1() {
-        return new ParallelGroup(
+        return new SequentialGroup(
                 new FollowPath(TrajectoryBuilder.PickupSpecimen1, true, 1.0),
                 MechanismRoutines.clawClose()
+        );
+    }
+    public static Command PreparePlaceSpecimen2() {
+        return new ParallelGroup(
+                new FollowPath(TrajectoryBuilder.PreparePlaceSpecimen2, true, 1.0),
+                MechanismRoutines.preparePlace2()
         );
     }
     public static Command PlaceSpecimen2() {
         return new ParallelGroup(
                 new FollowPath(TrajectoryBuilder.PlaceSpecimen2, true, 1.0),
-                MechanismRoutines.preparePlace()
+                MechanismRoutines.clawOpen()
         );
     }
 }

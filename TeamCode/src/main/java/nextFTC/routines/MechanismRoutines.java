@@ -40,4 +40,16 @@ public class MechanismRoutines {
                 claw.INSTANCE.close()
         );
     }
+    public static Command preparePlace2 () {
+        return new SequentialGroup(
+                claw.INSTANCE.close(),
+                arm.INSTANCE.ramp()
+        );
+    }
+    public static Command Place2 () {
+        return new SequentialGroup(
+                arm.INSTANCE.armPlace(),
+                claw.INSTANCE.open()
+        );
+    }
 }
