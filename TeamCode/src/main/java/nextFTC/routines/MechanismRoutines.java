@@ -5,6 +5,8 @@ import com.acmerobotics.dashboard.config.Config;
 import com.rowanmcalpin.nextftc.core.command.Command;
 import com.rowanmcalpin.nextftc.core.command.groups.ParallelGroup;
 import com.rowanmcalpin.nextftc.core.command.groups.SequentialGroup;
+import com.rowanmcalpin.nextftc.core.command.utility.delays.Delay;
+import com.rowanmcalpin.nextftc.core.units.TimeSpan;
 
 
 import nextFTC.subsystems.arm;
@@ -37,6 +39,7 @@ public class MechanismRoutines {
         }
     public static Command clawClose() {
         return new SequentialGroup(
+                new Delay(TimeSpan.fromSec(0.05)),
                 claw.INSTANCE.close()
         );
     }
@@ -48,8 +51,7 @@ public class MechanismRoutines {
     }
     public static Command Place2 () {
         return new SequentialGroup(
-                arm.INSTANCE.armPlace(),
-                claw.INSTANCE.open()
+                arm.INSTANCE.armPlace()
         );
     }
 }

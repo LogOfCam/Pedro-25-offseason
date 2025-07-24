@@ -15,8 +15,8 @@ public class claw extends Subsystem {
     public String name = "claw";
     public String state;
 
-    public double IntakeClawOpen = 0.55;
-    public double IntakeClawClosed = 0.696;
+    public double clawOpen = 0.55;
+    public double clawClosed = 0.696;
 
     @Override
     public void initialize(){
@@ -29,12 +29,12 @@ public class claw extends Subsystem {
 
     public Command open(){
         state = "OPEN";
-        return new ServoToPosition(servo, IntakeClawOpen, this);
+        return new ServoToPosition(servo, clawOpen, this);
     }
 
     public Command close(){
         state = "CLOSE";
-        return new ServoToPosition(servo, IntakeClawClosed, this);
+        return new ServoToPosition(servo, clawClosed, this);
     }
     public Command setPosition(double target){
         return new ServoToPosition(servo, target, this);

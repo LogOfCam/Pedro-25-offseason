@@ -21,7 +21,7 @@ public class arm extends Subsystem {
 
     public static final arm INSTANCE = new arm();
 
-    public static double kP = 0.0025;
+    public static double kP = 0.0026;
     public static double kI = 0.0;
     public static double kD = 0.0001;
     public static double kF = 0.015;
@@ -34,8 +34,8 @@ public class arm extends Subsystem {
     private final PIDFController controller = new PIDFController(kP, kI, kD, (pos) -> kF, threshold);
     public double transferPosition = -1800;
     public double preparePlace = -1200;
-    public double ramp = -1600;
-    public double armPlace = -1450;
+    public double ramp = -1700;
+    public double armPlace = -1550;
     public double Pickup = -4750;
     public double pickup = -4950;
 
