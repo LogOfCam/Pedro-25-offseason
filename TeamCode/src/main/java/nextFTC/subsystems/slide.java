@@ -20,12 +20,11 @@ public class slide extends Subsystem {
 
     public static final slide INSTANCE = new slide();
 
-    public static double kP = 0;
+    public static double kP = 0.025;
     public static double kI = 0;
-    public static double kD = 0;
-    public static double kF = 0;
-    public static double target = 0.0;
-    public static double threshold = 45;
+    public static double kD = 0.0003;
+    public static double kF = 0.035;
+    public static double threshold = 30;
 
     public String name = "slide";
     private MotorEx motor;
@@ -37,10 +36,10 @@ public class slide extends Subsystem {
 
 
         public Command SlideUp(float value) {
-        return new RunToPosition(motor,motor.getCurrentPosition()+200, controller, this);
+        return new RunToPosition(motor,motor.getCurrentPosition()+100, controller, this);
     }
     public Command SlideDown (float value) {
-        return new RunToPosition(motor, motor.getCurrentPosition() -200, controller, this);
+        return new RunToPosition(motor, motor.getCurrentPosition() -100, controller, this);
     }
     public Command John() {
         return new RunToPosition(motor, john, controller, this);

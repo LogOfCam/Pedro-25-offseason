@@ -101,6 +101,8 @@ public class Teleop extends PedroOpMode {
         gamepadManager.getGamepad1().getLeftTrigger().setHeldCommand(slide.INSTANCE::SlideDown);
         gamepadManager.getGamepad1().getDpadUp().setHeldCommand(arm.INSTANCE::armUp);
         gamepadManager.getGamepad1().getDpadDown().setHeldCommand(arm.INSTANCE::armDown);
+        gamepadManager.getGamepad1().getX().setReleasedCommand(claw.INSTANCE::toggle);
+        gamepadManager.getGamepad1().getX().setPressedCommand(claw.INSTANCE::toggle);
 
         gamepadManager.getGamepad2().getX().setReleasedCommand(claw.INSTANCE::toggle); // When pressed it triggers it so say open
         gamepadManager.getGamepad2().getX().setPressedCommand(claw.INSTANCE::toggle);  // Then when released it should close it
