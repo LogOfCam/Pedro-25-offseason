@@ -16,14 +16,12 @@ import com.rowanmcalpin.nextftc.pedro.PedroOpMode;
 
 import nextFTC.subsystems.arm;
 import nextFTC.subsystems.claw;
-import nextFTC.subsystems.slide;
 
 @TeleOp(name = "ClipBot")
 public class Teleop extends PedroOpMode {
     public Teleop() {
         super(claw.INSTANCE,
-                arm.INSTANCE,
-                slide.INSTANCE);
+                arm.INSTANCE);
     }
 
     public MecanumDriverControlled driver;
@@ -90,15 +88,12 @@ public class Teleop extends PedroOpMode {
         }
 
         arm.INSTANCE.resetEncoder();
-        slide.INSTANCE.resetEncoder();
     }
 
     private void registerControls() {
         //gamepadManager.getGamepad1().getRightBumper().setPressedCommand(this::specimenNextStep);
         //gamepadManager.getGamepad1().getLeftBumper().setPressedCommand(this::specimenPreviousStep);
         //gamepadManager.getGamepad1().getA().setPressedCommand(this::toggleSpeed);
-        gamepadManager.getGamepad1().getRightTrigger().setHeldCommand(slide.INSTANCE::SlideUp);
-        gamepadManager.getGamepad1().getLeftTrigger().setHeldCommand(slide.INSTANCE::SlideDown);
         gamepadManager.getGamepad1().getDpadUp().setHeldCommand(arm.INSTANCE::armUp);
         gamepadManager.getGamepad1().getDpadDown().setHeldCommand(arm.INSTANCE::armDown);
         gamepadManager.getGamepad1().getX().setReleasedCommand(claw.INSTANCE::toggle);
