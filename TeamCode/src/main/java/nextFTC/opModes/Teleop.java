@@ -16,12 +16,14 @@ import com.rowanmcalpin.nextftc.pedro.PedroOpMode;
 
 import nextFTC.subsystems.arm;
 import nextFTC.subsystems.claw;
+import nextFTC.subsystems.touchSensor;
 
 @TeleOp(name = "ClipBot")
 public class Teleop extends PedroOpMode {
     public Teleop() {
         super(claw.INSTANCE,
-                arm.INSTANCE);
+                arm.INSTANCE,
+                touchSensor.INSTANCE);
     }
 
     public MecanumDriverControlled driver;
@@ -57,13 +59,13 @@ public class Teleop extends PedroOpMode {
 
     @Override
     public void onUpdate() {
+        touchSensor.INSTANCE.periodic();
         if (lastLoopTimestamp == 0.0) {
             lastLoopTimestamp = System.nanoTime() / 1E9;
         }
 
         OpModeData.telemetry.addData("Loop time", (System.nanoTime() / 1E9) - lastLoopTimestamp);
         lastLoopTimestamp = System.nanoTime() / 1E9;
-
         OpModeData.telemetry.update();
     }
 
