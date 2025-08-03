@@ -16,6 +16,7 @@ import com.rowanmcalpin.nextftc.pedro.PedroOpMode;
 
 import nextFTC.subsystems.arm;
 import nextFTC.subsystems.claw;
+import nextFTC.subsystems.colorSensor;
 import nextFTC.subsystems.touchSensor;
 
 @TeleOp(name = "ClipBot")
@@ -23,6 +24,7 @@ public class Teleop extends PedroOpMode {
     public Teleop() {
         super(claw.INSTANCE,
                 arm.INSTANCE,
+                colorSensor.INSTANCE,
                 touchSensor.INSTANCE);
     }
 
@@ -106,7 +108,6 @@ public class Teleop extends PedroOpMode {
         gamepadManager.getGamepad2().getA().setPressedCommand(arm.INSTANCE::ramp);
         gamepadManager.getGamepad2().getB().setPressedCommand(arm.INSTANCE::transfer);
         gamepadManager.getGamepad2().getY().setPressedCommand(arm.INSTANCE::pickup);
-
         //gamepadManager.getGamepad2().getRightBumper().setPressedCommand(this::forwardCommand);
         //gamepadManager.getGamepad2().getLeftBumper().setPressedCommand(this::backCommand);
     }
