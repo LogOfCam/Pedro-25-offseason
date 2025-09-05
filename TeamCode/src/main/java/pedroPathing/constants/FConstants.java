@@ -20,27 +20,27 @@ import com.pedropathing.localization.Localizers;
         FollowerConstants.rightFrontMotorDirection = DcMotorSimple.Direction.REVERSE;
         FollowerConstants.rightRearMotorDirection = DcMotorSimple.Direction.REVERSE;
 
-        FollowerConstants.mass = 15;
+        FollowerConstants.mass = 10;
 
         FollowerConstants.xMovement = 67.499;
         FollowerConstants.yMovement = 59.8552;
 
-        FollowerConstants.forwardZeroPowerAcceleration = -34.2197;
-        FollowerConstants.lateralZeroPowerAcceleration = -57.4571;
+        FollowerConstants.forwardZeroPowerAcceleration = -66.8806;
+        FollowerConstants.lateralZeroPowerAcceleration = -58.0718;
 
-        FollowerConstants.translationalPIDFCoefficients.setCoefficients(0.4, 0, 0.03, 0);
+        FollowerConstants.translationalPIDFCoefficients.setCoefficients(0.2, 0, 0.02, 0);
         FollowerConstants.useSecondaryTranslationalPID = false;
         FollowerConstants.secondaryTranslationalPIDFCoefficients.setCoefficients(0.1, 0, 0.01, 0); // Not being used, @see useSecondaryTranslationalPID
 
-        FollowerConstants.headingPIDFCoefficients.setCoefficients(2.0, 0, 0.01, 0);
+        FollowerConstants.headingPIDFCoefficients.setCoefficients(1.0, 0, 0.02, 0);
         FollowerConstants.useSecondaryHeadingPID = false;
         FollowerConstants.secondaryHeadingPIDFCoefficients.setCoefficients(2, 0, 0.1, 0); // Not being used, @see useSecondaryHeadingPID
 
-        FollowerConstants.drivePIDFCoefficients.setCoefficients(0.03, 0, 0.0006, 0.6, 0);
+        FollowerConstants.drivePIDFCoefficients.setCoefficients(0.03, 0, 0.0007, 0.6, 0);
         FollowerConstants.useSecondaryDrivePID = false;
         FollowerConstants.secondaryDrivePIDFCoefficients.setCoefficients(0.1, 0, 0, 0.6, 0); // Not being used, @see useSecondaryDrivePID
 
-        FollowerConstants.zeroPowerAccelerationMultiplier = 4;
+        FollowerConstants.zeroPowerAccelerationMultiplier = 3;
         FollowerConstants.centripetalScaling = 0.0005;
 
         FollowerConstants.pathEndTimeoutConstraint = 50;
