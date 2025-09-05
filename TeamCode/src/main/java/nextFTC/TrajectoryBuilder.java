@@ -11,7 +11,7 @@ import com.rowanmcalpin.nextftc.pedro.FollowerNotInitializedException;
 public class TrajectoryBuilder {
 
     public static final Pose startPosition = new Pose(8.5, 67, Math.toRadians(0));
-    public static final Pose placePosition = new Pose(42, 66, Math.toRadians(0));
+    public static final Pose placePosition = new Pose(42, 67, Math.toRadians(0));
     public static final Pose endCurve = new Pose(66.5, 15.5, Math.toRadians(180));
     public static final Point firstPoint = new Point(23, 69);
     public static final Point secoundPoint = new Point(85, 46.5);
@@ -19,7 +19,7 @@ public class TrajectoryBuilder {
 
 
 
-    public static PathChain StartPosition, PlacePosition, EndCurve, PushPosition;
+    public static PathChain StartPosition, PlacePosition, EndCurve;
 
     public static void buildPaths(Follower follower) {
         if (follower == null) {

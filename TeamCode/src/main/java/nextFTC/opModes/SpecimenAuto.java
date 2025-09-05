@@ -9,8 +9,6 @@ import com.rowanmcalpin.nextftc.pedro.PedroOpMode;
 
 import nextFTC.TrajectoryBuilder;
 import nextFTC.routines.SpecimenRoutines;
-import nextFTC.subsystems.arm;
-import nextFTC.subsystems.claw;
 import pedroPathing.constants.FConstants;
 import pedroPathing.constants.LConstants;
 
@@ -23,7 +21,6 @@ public class SpecimenAuto extends PedroOpMode {
 
     @Override
     public void onInit() {
-
         follower = new Follower(hardwareMap, FConstants.class, LConstants.class);
         try {
             follower.poseUpdater.resetIMU();
@@ -52,8 +49,7 @@ public class SpecimenAuto extends PedroOpMode {
                 new SequentialGroup(
                         SpecimenRoutines.StartPosition(),
                         SpecimenRoutines.PlacePosition(),
-                        SpecimenRoutines.EndCurve(),
-                        SpecimenRoutines.PushPosition()
+                        SpecimenRoutines.EndCurve()
                 )
         );
     }

@@ -30,9 +30,4 @@ public class SpecimenRoutines {
                 new FollowPath(TrajectoryBuilder.EndCurve, true, 1.0)
         );
     }
-    public static Command PushPosition() {
-        return new ParallelGroup(
-                new FollowPath(TrajectoryBuilder.PushPosition, true, 1.0)
-        );
-    }
 }
