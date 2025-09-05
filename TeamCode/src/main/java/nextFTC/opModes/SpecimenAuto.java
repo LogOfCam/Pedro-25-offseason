@@ -19,10 +19,7 @@ public class SpecimenAuto extends PedroOpMode {
     private final FConstants fConstants = new FConstants();
     private final LConstants lConstants = new LConstants();
 
-    public SpecimenAuto(){
-        super(claw.INSTANCE,
-                arm.INSTANCE);
-    }
+
 
     @Override
     public void onInit() {
@@ -34,16 +31,11 @@ public class SpecimenAuto extends PedroOpMode {
             throw new RuntimeException(e);
         }
 
-        arm.INSTANCE.resetEncoder();
-
-        claw.INSTANCE.close().invoke();
-
         OpModeData.telemetry = telemetry;
     }
 
     @Override
     public void onWaitForStart() {
-        claw.INSTANCE.close(); // Close claw
         telemetry.update();
     }
 
@@ -54,13 +46,14 @@ public class SpecimenAuto extends PedroOpMode {
 
     @Override
     public void onStartButtonPressed() {
-        TrajectoryBuilder.buildBucketPaths(follower);
+        TrajectoryBuilder.buildPaths(follower);
 
         CommandManager.INSTANCE.scheduleCommand(
                 new SequentialGroup(
                         SpecimenRoutines.StartPosition(),
-                        SpecimenRoutines.PlacePosition1(),
-                        SpecimenRoutines.Place1()
+                        SpecimenRoutines.PlacePosition(),
+                        SpecimenRoutines.EndCurve(),
+                        SpecimenRoutines.PushPosition()
                 )
         );
     }

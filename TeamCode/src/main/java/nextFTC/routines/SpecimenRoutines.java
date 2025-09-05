@@ -17,61 +17,22 @@ public class SpecimenRoutines {
     // SpecimenTestAuto
     public static Command StartPosition() {
         return new ParallelGroup(
-                MechanismRoutines.preparePlace(),
                 new FollowPath(TrajectoryBuilder.StartPosition, true, 1.0)
         );
     }
-    public static Command PlacePosition1() {
+    public static Command PlacePosition() {
         return new ParallelGroup(
-                MechanismRoutines.place1Position(),
-                new FollowPath(TrajectoryBuilder.PlacePosition1, true, 1.0)
+                new FollowPath(TrajectoryBuilder.PlacePosition, true, 1.0)
         );
     }
-    public static Command Place1() {
-        return new SequentialGroup(
-                new FollowPath(TrajectoryBuilder.Place1, true, 1.0),
-                MechanismRoutines.clawOpen()
-        );
-    }
-    public static Command PreparePush1() {
+    public static Command EndCurve() {
         return new ParallelGroup(
-                new FollowPath(TrajectoryBuilder.PreparePush1, true, 1.0)
+                new FollowPath(TrajectoryBuilder.EndCurve, true, 1.0)
         );
     }
-    public static Command Push1() {
+    public static Command PushPosition() {
         return new ParallelGroup(
-                new FollowPath(TrajectoryBuilder.Push1, true, 1.0)
-        );
-    }
-    public static Command PrepareToPush2() {
-        return new ParallelGroup(
-                new FollowPath(TrajectoryBuilder.PrepareToPush2, true, 1.0)
-        );
-    }
-    public static Command PreparePickupSpecimen1() {
-        return new SequentialGroup(
-                new FollowPath(TrajectoryBuilder.PreparePickupSpecimen1, true, 1.0),
-                MechanismRoutines.pickupSpecimen(),
-               new Delay(TimeSpan.fromSec(0.5))
-        );
-    }
-    public static Command PickupSpecimen1() {
-        return new SequentialGroup(
-                MechanismRoutines.clawClose(),
-                new FollowPath(TrajectoryBuilder.PickupSpecimen1, true, 1.0)
-        );
-    }
-    public static Command PreparePlaceSpecimen2() {
-        return new ParallelGroup(
-                new FollowPath(TrajectoryBuilder.PreparePlaceSpecimen2, true, 1.0),
-                MechanismRoutines.preparePlace2()
-        );
-    }
-    public static Command PlaceSpecimen2() {
-        return new SequentialGroup(
-                MechanismRoutines.Place2(),
-                new FollowPath(TrajectoryBuilder.PlaceSpecimen2, true, 1.0),
-                MechanismRoutines.clawOpen()
+                new FollowPath(TrajectoryBuilder.PushPosition, true, 1.0)
         );
     }
 }
