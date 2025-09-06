@@ -21,7 +21,7 @@ public class TrajectoryBuilder {
 
     public static PathChain StartPosition, PlacePosition, EndCurve;
 
-    public static void buildBucketPaths(Follower follower) {
+    public static void buildTestPaths(Follower follower) {
         if (follower == null) {
             try {
                 throw new FollowerNotInitializedException();
