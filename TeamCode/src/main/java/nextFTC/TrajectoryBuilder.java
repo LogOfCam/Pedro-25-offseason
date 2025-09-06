@@ -14,14 +14,14 @@ public class TrajectoryBuilder {
     public static final Pose placePosition = new Pose(42, 67, Math.toRadians(0));
     public static final Pose endCurve = new Pose(66.5, 15.5, Math.toRadians(180));
     public static final Point firstPoint = new Point(23, 69);
-    public static final Point secoundPoint = new Point(85, 46.5);
+    public static final Point secondPoint = new Point(85, 46.5);
     public static final Pose pushPosition = new Pose(42, 66, Math.toRadians(0));
 
 
 
     public static PathChain StartPosition, PlacePosition, EndCurve;
 
-    public static void buildPaths(Follower follower) {
+    public static void buildBucketPaths(Follower follower) {
         if (follower == null) {
             try {
                 throw new FollowerNotInitializedException();
@@ -45,7 +45,7 @@ public class TrajectoryBuilder {
         EndCurve = follower.pathBuilder()
                 .addPath(
                         new BezierCurve(
-                                new Point(endCurve), firstPoint,secoundPoint, new Point(pushPosition)
+                                new Point(endCurve), firstPoint,secondPoint, new Point(pushPosition)
                         )
                 ).setLinearHeadingInterpolation(endCurve.getHeading(),pushPosition.getHeading()).build();
     }

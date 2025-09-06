@@ -20,38 +20,4 @@ public class MechanismRoutines {
                     arm.INSTANCE.preparePlace()
             );
         }
-        public static Command place1Position () {
-            return new SequentialGroup(
-                    arm.INSTANCE.armPlace(),
-                    claw.INSTANCE.open()
-            );
-        }
-            public static Command clawOpen () {
-                return new SequentialGroup(
-                        claw.INSTANCE.open()
-                );
-            }
-                public static Command pickupSpecimen() {
-                    return new ParallelGroup(
-                            arm.INSTANCE.Pickup(),
-                            claw.INSTANCE.open()
-                    );
-        }
-    public static Command clawClose() {
-        return new SequentialGroup(
-                new Delay(TimeSpan.fromSec(0.05)),
-                claw.INSTANCE.close()
-        );
-    }
-    public static Command preparePlace2 () {
-        return new SequentialGroup(
-                claw.INSTANCE.close(),
-                arm.INSTANCE.ramp()
-        );
-    }
-    public static Command Place2 () {
-        return new SequentialGroup(
-                arm.INSTANCE.armPlace()
-        );
-    }
 }

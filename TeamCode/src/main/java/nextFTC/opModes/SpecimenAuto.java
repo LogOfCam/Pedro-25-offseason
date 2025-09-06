@@ -43,7 +43,7 @@ public class SpecimenAuto extends PedroOpMode {
 
     @Override
     public void onStartButtonPressed() {
-        TrajectoryBuilder.buildPaths(follower);
+        TrajectoryBuilder.buildBucketPaths(follower);
 
         CommandManager.INSTANCE.scheduleCommand(
                 new SequentialGroup(

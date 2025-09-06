@@ -25,8 +25,8 @@ import com.pedropathing.localization.Localizers;
         FollowerConstants.xMovement = 67.499;
         FollowerConstants.yMovement = 59.8552;
 
-        FollowerConstants.forwardZeroPowerAcceleration = -66.8806;
-        FollowerConstants.lateralZeroPowerAcceleration = -58.0718;
+        FollowerConstants.forwardZeroPowerAcceleration = -33.3852;
+        FollowerConstants.lateralZeroPowerAcceleration = -51.6903;
 
         FollowerConstants.translationalPIDFCoefficients.setCoefficients(0.2, 0, 0.02, 0);
         FollowerConstants.useSecondaryTranslationalPID = false;
