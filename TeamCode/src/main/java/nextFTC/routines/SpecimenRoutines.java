@@ -14,10 +14,9 @@ public class SpecimenRoutines {
 
     private SpecimenRoutines() {
     }
-    // SpecimenTestAuto
-    public static Command StartPosition() {
+    public static Command StartPose() {
         return new ParallelGroup(
-                new FollowPath(TrajectoryBuilder.StartPosition, true, 1.0)
+                new FollowPath(TrajectoryBuilder.StartPose, true, 1.0)
         );
     }
     public static Command PlacePosition() {

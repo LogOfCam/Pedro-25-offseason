@@ -43,11 +43,11 @@ public class SpecimenAuto extends PedroOpMode {
 
     @Override
     public void onStartButtonPressed() {
-        TrajectoryBuilder.buildTestPaths(follower);
+        TrajectoryBuilder.buildPaths(follower);
 
         CommandManager.INSTANCE.scheduleCommand(
                 new SequentialGroup(
-                        SpecimenRoutines.StartPosition(),
+                        SpecimenRoutines.StartPose(),
                         SpecimenRoutines.PlacePosition(),
                         SpecimenRoutines.EndCurve()
                 )
