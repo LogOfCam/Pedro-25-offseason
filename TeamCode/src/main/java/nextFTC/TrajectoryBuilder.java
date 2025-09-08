@@ -14,7 +14,7 @@ public class TrajectoryBuilder {
     public static final Pose endCurve = new Pose(66.5, 15.5, Math.toRadians(180));
     public static final Point firstPoint = new Point(23, 69);
     public static final Point secondPoint = new Point(85, 46.5);
-    public static final Pose pushPosition = new Pose(42, 66, Math.toRadians(0));
+    public static final Pose pushPosition = new Pose(15, 15.5, Math.toRadians(180));
 
 
 
@@ -28,6 +28,7 @@ public class TrajectoryBuilder {
                 throw new RuntimeException(e);
             }
         }
+        follower.setPose(TrajectoryBuilder.startPose);
 
         StartPose = follower.pathBuilder()
                 .addPath(
@@ -37,15 +38,15 @@ public class TrajectoryBuilder {
                 ).setConstantHeadingInterpolation(startPose.getHeading()).build();
         PlacePosition = follower.pathBuilder()
                 .addPath(
-                        new BezierLine(
-                                new Point(placePosition), new Point(endCurve)
+                        new BezierCurve(
+                                new Point(placePosition), firstPoint,secondPoint,  new Point(endCurve)
                         )
-                ).setConstantHeadingInterpolation(placePosition.getHeading()).build();
+                ).setLinearHeadingInterpolation( placePosition.getHeading(), endCurve.getHeading()).build();
         EndCurve = follower.pathBuilder()
                 .addPath(
-                        new BezierCurve(
-                                new Point(endCurve), firstPoint,secondPoint, new Point(pushPosition)
+                        new BezierLine(
+                                new Point(endCurve),new Point(pushPosition)
                         )
-                ).setLinearHeadingInterpolation(endCurve.getHeading(),pushPosition.getHeading()).build();
+                ).setConstantHeadingInterpolation(pushPosition.getHeading()).build();
     }
 }
