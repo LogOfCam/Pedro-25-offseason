@@ -100,6 +100,12 @@ public class Teleop extends PedroOpMode {
                 if (tag.id == 21) {
                     telemetry.addLine("Tag GPP detected!");
                 }
+                if (tag.id == 22) {
+                    telemetry.addLine("Tag PGP detected!");
+                }
+                if (tag.id == 23) {
+                    telemetry.addLine("Tag PPG detected!");
+                }
             }
         } else {
             telemetry.addData("AprilTags Detected", 0);
