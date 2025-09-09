@@ -36,10 +36,10 @@ import com.rowanmcalpin.nextftc.ftc.OpModeData;
 
     @Override
     public void periodic() {
-        OpModeData.telemetry.addData("Red", red());
-        OpModeData.telemetry.addData("Green", green());
-        OpModeData.telemetry.addData("Blue", blue());
-        OpModeData.telemetry.addData("Dominant", getDominantColor());
+//        OpModeData.telemetry.addData("Red", red());
+//        OpModeData.telemetry.addData("Green", green());
+//        OpModeData.telemetry.addData("Blue", blue());
+//        OpModeData.telemetry.addData("Dominant", getDominantColor());
         OpModeData.telemetry.update();
             }
     }

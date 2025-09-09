@@ -80,9 +80,9 @@ public class arm extends Subsystem {
         controller.setSetPointTolerance(threshold);
         
 
-        OpModeData.telemetry.addData("arm Position", motor.getCurrentPosition());
-        OpModeData.telemetry.addData("arm Target", controller.getTarget());
-        OpModeData.telemetry.addData("arm Current(A):",motor.getMotor().getCurrent(CurrentUnit.MILLIAMPS));
+//        OpModeData.telemetry.addData("arm Position", motor.getCurrentPosition());
+//        OpModeData.telemetry.addData("arm Target", controller.getTarget());
+//        OpModeData.telemetry.addData("arm Current(A):",motor.getMotor().getCurrent(CurrentUnit.MILLIAMPS));
     }
 
     public void resetEncoder() {
