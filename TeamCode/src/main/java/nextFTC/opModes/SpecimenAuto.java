@@ -81,19 +81,26 @@ public class SpecimenAuto extends PedroOpMode {
                 if (tag.id == 21) {
                     telemetry.addLine("Tag GPP detected!");
                     TrajectoryBuilder.buildPaths(follower);
-                    SpecimenRoutines.StartPose();
+                    new SequentialGroup(
+                            SpecimenRoutines.StartPose()
+                    );
                     tag21Handled = true;
                 }
                 if (tag.id == 22) {
                     telemetry.addLine("Tag PGP detected!");
                     TrajectoryBuilder.buildPaths(follower);
+                    new SequentialGroup(
+                            SpecimenRoutines.EndCurve()
+                    );
                     SpecimenRoutines.EndCurve();
                     tag22Handled = true;
                 }
                 if (tag.id == 23) {
                     telemetry.addLine("Tag PPG detected!");
                     TrajectoryBuilder.buildPaths(follower);
-                    SpecimenRoutines.ThirdPosition();
+                    new SequentialGroup(
+                    SpecimenRoutines.ThirdPosition()
+                    );
                     tag23Handled = true;
                 }
             }
