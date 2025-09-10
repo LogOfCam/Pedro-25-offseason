@@ -29,4 +29,9 @@ public class SpecimenRoutines {
                 new FollowPath(TrajectoryBuilder.EndCurve, true, 1.0)
         );
     }
+    public static Command ThirdPosition() {
+        return new ParallelGroup(
+                new FollowPath(TrajectoryBuilder.ThirdPosition, true, 1.0)
+        );
+    }
 }

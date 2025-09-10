@@ -48,9 +48,6 @@ public class Teleop extends PedroOpMode {
 
     @Override
     public void onInit() {
-        webcam.init(hardwareMap, telemetry);
-        telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
-        OpModeData.telemetry = telemetry;
         mecanumDriveInit();
         telemetry.update();
     }
@@ -71,45 +68,6 @@ public class Teleop extends PedroOpMode {
     @Override
     public void onUpdate() {
         touchSensor.INSTANCE.periodic();
-        telemetry.addData("Camera State", visionPortal.getCameraState());
-        List<AprilTagDetection> detections = webcam.getInstance().getDetections();
-        if (detections != null && !detections.isEmpty()) {
-            telemetry.addData("AprilTags Detected", detections.size());
-
-            for (AprilTagDetection tag : detections) {
-                telemetry.addData("Tag ID", tag.id);
-
-                // Check if 'center' is not null
-                if (tag.center != null) {
-                    telemetry.addData("Position", "(%.2f, %.2f)", tag.center.x, tag.center.y);
-                } else {
-                    telemetry.addData("Position", "unknown");
-                }
-
-                // Check if 'ftcPose' is not null
-                if (tag.ftcPose != null) {
-                    telemetry.addData("Distance", "%.2f meters", tag.ftcPose.range);
-                    telemetry.addData("Bearing", "%.2f°", tag.ftcPose.bearing);
-                } else {
-                    telemetry.addData("Distance", "unknown");
-                    telemetry.addData("Bearing", "unknown");
-                }
-
-                telemetry.addLine();
-                // Your custom tag id check
-                if (tag.id == 21) {
-                    telemetry.addLine("Tag GPP detected!");
-                }
-                if (tag.id == 22) {
-                    telemetry.addLine("Tag PGP detected!");
-                }
-                if (tag.id == 23) {
-                    telemetry.addLine("Tag PPG detected!");
-                }
-            }
-        } else {
-            telemetry.addData("AprilTags Detected", 0);
-        }
         if (lastLoopTimestamp == 0.0) {
             lastLoopTimestamp = System.nanoTime() / 1E9;
         }
@@ -118,11 +76,7 @@ public class Teleop extends PedroOpMode {
         lastLoopTimestamp = System.nanoTime() / 1E9;
         OpModeData.telemetry.update();
     }
-        @Override
-        public void onStop() {
-            webcam.getInstance().close();
-            webcam.reset();
-        }
+
 
     public void mecanumDriveInit() {
         frontLeft = new MotorEx("frontLeft");
