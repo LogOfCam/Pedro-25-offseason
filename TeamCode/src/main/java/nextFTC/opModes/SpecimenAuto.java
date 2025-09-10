@@ -1,9 +1,11 @@
 package nextFTC.opModes;
 
+import static nextFTC.routines.SpecimenRoutines.ThirdPosition;
 import static nextFTC.subsystems.webcam.visionPortal;
 
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
+import com.google.blocks.ftcrobotcontroller.util.AvailableTtsLocalesProvider;
 import com.pedropathing.follower.Follower;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.rowanmcalpin.nextftc.core.command.CommandManager;
@@ -25,9 +27,9 @@ import pedroPathing.constants.LConstants;
 public class SpecimenAuto extends PedroOpMode {
     private final FConstants fConstants = new FConstants();
     private final LConstants lConstants = new LConstants();
-    private boolean tag23Handled = false;
-    private boolean tag21Handled = false;
-    private boolean tag22Handled = false;
+    public boolean tag23Handled = false;
+    public boolean tag21Handled = false;
+    public boolean tag22Handled = false;
 
 
     @Override
@@ -60,14 +62,12 @@ public class SpecimenAuto extends PedroOpMode {
             for (AprilTagDetection tag : detections) {
                 telemetry.addData("Tag ID", tag.id);
 
-                // Check if 'center' is not null
                 if (tag.center != null) {
                     telemetry.addData("Position", "(%.2f, %.2f)", tag.center.x, tag.center.y);
                 } else {
                     telemetry.addData("Position", "unknown");
                 }
 
-                // Check if 'ftcPose' is not null
                 if (tag.ftcPose != null) {
                     telemetry.addData("Distance", "%.2f meters", tag.ftcPose.range);
                     telemetry.addData("Bearing", "%.2f°", tag.ftcPose.bearing);
@@ -77,11 +77,10 @@ public class SpecimenAuto extends PedroOpMode {
                 }
 
                 telemetry.addLine();
-                // Your custom tag id check
                 if (tag.id == 21) {
                     telemetry.addLine("Tag GPP detected!");
                     TrajectoryBuilder.buildPaths(follower);
-                    new SequentialGroup(
+                    CommandManager.INSTANCE.scheduleCommand(
                             SpecimenRoutines.StartPose()
                     );
                     tag21Handled = true;
@@ -89,7 +88,7 @@ public class SpecimenAuto extends PedroOpMode {
                 if (tag.id == 22) {
                     telemetry.addLine("Tag PGP detected!");
                     TrajectoryBuilder.buildPaths(follower);
-                    new SequentialGroup(
+                    CommandManager.INSTANCE.scheduleCommand(
                             SpecimenRoutines.EndCurve()
                     );
                     SpecimenRoutines.EndCurve();
@@ -98,8 +97,8 @@ public class SpecimenAuto extends PedroOpMode {
                 if (tag.id == 23) {
                     telemetry.addLine("Tag PPG detected!");
                     TrajectoryBuilder.buildPaths(follower);
-                    new SequentialGroup(
-                    SpecimenRoutines.ThirdPosition()
+                    CommandManager.INSTANCE.scheduleCommand(
+                            SpecimenRoutines.ThirdPosition()
                     );
                     tag23Handled = true;
                 }
@@ -115,13 +114,13 @@ public class SpecimenAuto extends PedroOpMode {
         webcam.reset();
     }
 
-    //@Override
-    //public void onStartButtonPressed() {
-        //TrajectoryBuilder.buildPaths(follower);
-
+//    @Override
+//    public void onStartButtonPressed() {
+//        TrajectoryBuilder.buildPaths(follower);
+//
 //        CommandManager.INSTANCE.scheduleCommand(
 //                new SequentialGroup(
 //                )
 //        );
-    //}
+//    }
 }

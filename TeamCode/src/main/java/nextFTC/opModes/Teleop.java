@@ -1,9 +1,5 @@
 package nextFTC.opModes;
 
-import static nextFTC.subsystems.webcam.visionPortal;
-
-import com.acmerobotics.dashboard.FtcDashboard;
-import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -16,17 +12,12 @@ import com.rowanmcalpin.nextftc.ftc.driving.MecanumDriverControlled;
 import com.rowanmcalpin.nextftc.ftc.hardware.controllables.MotorEx;
 import com.rowanmcalpin.nextftc.pedro.PedroOpMode;
 
-import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
 
-import java.util.List;
-
-import nextFTC.subsystems.webcam;
 import nextFTC.subsystems.arm;
 import nextFTC.subsystems.claw;
 import nextFTC.subsystems.colorSensor;
 import nextFTC.subsystems.touchSensor;
 
-//test
 @TeleOp(name = "ClipBot")
 public class Teleop extends PedroOpMode {
     public Teleop() {
