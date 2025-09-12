@@ -39,6 +39,7 @@ public class Teleop extends PedroOpMode {
 
     @Override
     public void onInit() {
+        colorSensor.INSTANCE.initialize(hardwareMap, telemetry);
         mecanumDriveInit();
         telemetry.update();
     }
@@ -58,7 +59,7 @@ public class Teleop extends PedroOpMode {
 
     @Override
     public void onUpdate() {
-        touchSensor.INSTANCE.periodic();
+        colorSensor.INSTANCE.periodic();
         if (lastLoopTimestamp == 0.0) {
             lastLoopTimestamp = System.nanoTime() / 1E9;
         }
