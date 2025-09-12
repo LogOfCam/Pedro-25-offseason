@@ -23,7 +23,6 @@ public class Teleop extends PedroOpMode {
     public Teleop() {
         super(claw.INSTANCE,
                 arm.INSTANCE,
-                colorSensor.INSTANCE,
                 touchSensor.INSTANCE);
     }
 
@@ -39,7 +38,7 @@ public class Teleop extends PedroOpMode {
 
     @Override
     public void onInit() {
-        colorSensor.INSTANCE.initialize(hardwareMap, telemetry);
+        colorSensor.INSTANCE.initialize(hardwareMap,telemetry);
         mecanumDriveInit();
         telemetry.update();
     }
