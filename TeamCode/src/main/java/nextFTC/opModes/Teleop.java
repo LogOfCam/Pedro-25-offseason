@@ -13,7 +13,7 @@ import com.rowanmcalpin.nextftc.ftc.hardware.controllables.MotorEx;
 import com.rowanmcalpin.nextftc.pedro.PedroOpMode;
 
 
-import nextFTC.subsystems.arm;
+import nextFTC.subsystems.launch;
 import nextFTC.subsystems.claw;
 import nextFTC.subsystems.colorSensor;
 import nextFTC.subsystems.touchSensor;
@@ -22,7 +22,7 @@ import nextFTC.subsystems.touchSensor;
 public class Teleop extends PedroOpMode {
     public Teleop() {
         super(claw.INSTANCE,
-                arm.INSTANCE,
+                launch.INSTANCE,
                 touchSensor.INSTANCE);
     }
 
@@ -86,23 +86,19 @@ public class Teleop extends PedroOpMode {
             driveMotor.getMotor().setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         }
 
-        arm.INSTANCE.resetEncoder();
     }
 
     private void registerControls() {
         //gamepadManager.getGamepad1().getRightBumper().setPressedCommand(this::specimenNextStep);
         //gamepadManager.getGamepad1().getLeftBumper().setPressedCommand(this::specimenPreviousStep);
         //gamepadManager.getGamepad1().getA().setPressedCommand(this::toggleSpeed);
-        gamepadManager.getGamepad1().getDpadUp().setHeldCommand(arm.INSTANCE::armUp);
-        gamepadManager.getGamepad1().getDpadDown().setHeldCommand(arm.INSTANCE::armDown);
+        gamepadManager.getGamepad2().getRightBumper().setPressedCommand(launch.INSTANCE::runWithCurrentPower);
+        gamepadManager.getGamepad2().getLeftBumper().setPressedCommand(launch.INSTANCE::stop);
         gamepadManager.getGamepad1().getX().setReleasedCommand(claw.INSTANCE::toggle);
         gamepadManager.getGamepad1().getX().setPressedCommand(claw.INSTANCE::toggle);
 
         gamepadManager.getGamepad2().getX().setReleasedCommand(claw.INSTANCE::toggle); // When pressed it triggers it so say open
         gamepadManager.getGamepad2().getX().setPressedCommand(claw.INSTANCE::toggle);  // Then when released it should close it
-        gamepadManager.getGamepad2().getA().setPressedCommand(arm.INSTANCE::ramp);
-        gamepadManager.getGamepad2().getB().setPressedCommand(arm.INSTANCE::transfer);
-        gamepadManager.getGamepad2().getY().setPressedCommand(arm.INSTANCE::pickup);
         //gamepadManager.getGamepad2().getRightBumper().setPressedCommand(this::forwardCommand);
         //gamepadManager.getGamepad2().getLeftBumper().setPressedCommand(this::backCommand);
     }
