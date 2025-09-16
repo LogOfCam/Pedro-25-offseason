@@ -25,7 +25,6 @@ public class Teleop extends PedroOpMode {
                 launch.INSTANCE,
                 touchSensor.INSTANCE);
     }
-
     public MecanumDriverControlled driver;
     public MotorEx frontLeft;
     public MotorEx backLeft;
@@ -52,7 +51,7 @@ public class Teleop extends PedroOpMode {
         driver.invoke();
         registerControls();
 
-
+        launch.INSTANCE.resetEncoder();
         claw.INSTANCE.close();
     }
 
@@ -92,13 +91,14 @@ public class Teleop extends PedroOpMode {
         //gamepadManager.getGamepad1().getRightBumper().setPressedCommand(this::specimenNextStep);
         //gamepadManager.getGamepad1().getLeftBumper().setPressedCommand(this::specimenPreviousStep);
         //gamepadManager.getGamepad1().getA().setPressedCommand(this::toggleSpeed);
-        gamepadManager.getGamepad2().getRightBumper().setPressedCommand(launch.INSTANCE::runWithCurrentPower);
-        gamepadManager.getGamepad2().getLeftBumper().setPressedCommand(launch.INSTANCE::stop);
+        gamepadManager.getGamepad2().getRightBumper().setPressedCommand(launch.INSTANCE::runAtTargetRPM);
+        gamepadManager.getGamepad2().getRightBumper().setReleasedCommand(launch.INSTANCE::stop);
+
         gamepadManager.getGamepad1().getX().setReleasedCommand(claw.INSTANCE::toggle);
         gamepadManager.getGamepad1().getX().setPressedCommand(claw.INSTANCE::toggle);
 
-        gamepadManager.getGamepad2().getX().setReleasedCommand(claw.INSTANCE::toggle); // When pressed it triggers it so say open
-        gamepadManager.getGamepad2().getX().setPressedCommand(claw.INSTANCE::toggle);  // Then when released it should close it
+        gamepadManager.getGamepad2().getX().setReleasedCommand(claw.INSTANCE::toggle);
+        gamepadManager.getGamepad2().getX().setPressedCommand(claw.INSTANCE::toggle);
         //gamepadManager.getGamepad2().getRightBumper().setPressedCommand(this::forwardCommand);
         //gamepadManager.getGamepad2().getLeftBumper().setPressedCommand(this::backCommand);
     }
