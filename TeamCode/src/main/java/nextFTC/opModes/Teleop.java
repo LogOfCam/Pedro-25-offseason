@@ -50,14 +50,17 @@ public class Teleop extends PedroOpMode {
         driver = new MecanumDriverControlled(driveMotors, gamepadManager.getGamepad1());
         driver.invoke();
         registerControls();
-
-        launch.INSTANCE.resetEncoder();
         claw.INSTANCE.close();
     }
 
     @Override
     public void onUpdate() {
         colorSensor.INSTANCE.periodic();
+        if (gamepad1.a) {
+            launch.INSTANCE.setPower(launch.setPower);
+        } else {
+            launch.INSTANCE.setPower(0);
+        }
         if (lastLoopTimestamp == 0.0) {
             lastLoopTimestamp = System.nanoTime() / 1E9;
         }
@@ -84,21 +87,14 @@ public class Teleop extends PedroOpMode {
         for (MotorEx driveMotor : driveMotors) {
             driveMotor.getMotor().setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         }
-
     }
 
     private void registerControls() {
         //gamepadManager.getGamepad1().getRightBumper().setPressedCommand(this::specimenNextStep);
         //gamepadManager.getGamepad1().getLeftBumper().setPressedCommand(this::specimenPreviousStep);
         //gamepadManager.getGamepad1().getA().setPressedCommand(this::toggleSpeed);
-        gamepadManager.getGamepad2().getRightBumper().setPressedCommand(launch.INSTANCE::runAtTargetRPM);
-        gamepadManager.getGamepad2().getRightBumper().setReleasedCommand(launch.INSTANCE::stop);
-
         gamepadManager.getGamepad1().getX().setReleasedCommand(claw.INSTANCE::toggle);
         gamepadManager.getGamepad1().getX().setPressedCommand(claw.INSTANCE::toggle);
-
-        gamepadManager.getGamepad2().getX().setReleasedCommand(claw.INSTANCE::toggle);
-        gamepadManager.getGamepad2().getX().setPressedCommand(claw.INSTANCE::toggle);
         //gamepadManager.getGamepad2().getRightBumper().setPressedCommand(this::forwardCommand);
         //gamepadManager.getGamepad2().getLeftBumper().setPressedCommand(this::backCommand);
     }
