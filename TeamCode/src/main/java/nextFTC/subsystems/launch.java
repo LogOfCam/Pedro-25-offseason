@@ -15,7 +15,7 @@ public class launch extends Subsystem {
     public static final launch INSTANCE = new launch();
 
     private MotorEx motor;
-    public static double setPower = 0.5;
+    public static double setPower = 0.7;
 
     @Override
     public void initialize() {
