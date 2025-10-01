@@ -14,15 +14,17 @@ import com.rowanmcalpin.nextftc.pedro.PedroOpMode;
 
 
 import nextFTC.subsystems.launch;
-import nextFTC.subsystems.claw;
+import nextFTC.subsystems.arm;
 import nextFTC.subsystems.colorSensor;
+import nextFTC.subsystems.rightIntake;
 import nextFTC.subsystems.touchSensor;
 
 @TeleOp(name = "ClipBot")
 public class Teleop extends PedroOpMode {
     public Teleop() {
-        super(claw.INSTANCE,
+        super(arm.INSTANCE,
                 launch.INSTANCE,
+                rightIntake.INSTANCE,
                 touchSensor.INSTANCE);
     }
     public MecanumDriverControlled driver;
@@ -50,7 +52,7 @@ public class Teleop extends PedroOpMode {
         driver = new MecanumDriverControlled(driveMotors, gamepadManager.getGamepad1());
         driver.invoke();
         registerControls();
-        claw.INSTANCE.close();
+        arm.INSTANCE.notPushing();
     }
 
     @Override
@@ -93,8 +95,10 @@ public class Teleop extends PedroOpMode {
         //gamepadManager.getGamepad1().getRightBumper().setPressedCommand(this::specimenNextStep);
         //gamepadManager.getGamepad1().getLeftBumper().setPressedCommand(this::specimenPreviousStep);
         //gamepadManager.getGamepad1().getA().setPressedCommand(this::toggleSpeed);
-        gamepadManager.getGamepad1().getX().setReleasedCommand(claw.INSTANCE::toggle);
-        gamepadManager.getGamepad1().getX().setPressedCommand(claw.INSTANCE::toggle);
+        gamepadManager.getGamepad1().getX().setReleasedCommand(arm.INSTANCE::toggle);
+        gamepadManager.getGamepad1().getX().setPressedCommand(arm.INSTANCE::toggle);
+        gamepadManager.getGamepad1().getA().setReleasedCommand(rightIntake.INSTANCE::toggleIntake);
+        gamepadManager.getGamepad1().getA().setPressedCommand(rightIntake.INSTANCE::toggleIntake);
         //gamepadManager.getGamepad2().getRightBumper().setPressedCommand(this::forwardCommand);
         //gamepadManager.getGamepad2().getLeftBumper().setPressedCommand(this::backCommand);
     }

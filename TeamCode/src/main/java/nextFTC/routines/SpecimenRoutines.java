@@ -2,13 +2,9 @@ package nextFTC.routines;
 
 import com.rowanmcalpin.nextftc.core.command.Command;
 import com.rowanmcalpin.nextftc.core.command.groups.ParallelGroup;
-import com.rowanmcalpin.nextftc.core.command.groups.SequentialGroup;
-import com.rowanmcalpin.nextftc.core.command.utility.delays.Delay;
-import com.rowanmcalpin.nextftc.core.units.TimeSpan;
 import com.rowanmcalpin.nextftc.pedro.FollowPath;
 
 import nextFTC.TrajectoryBuilder;
-import nextFTC.subsystems.claw;
 
 public class SpecimenRoutines {
 

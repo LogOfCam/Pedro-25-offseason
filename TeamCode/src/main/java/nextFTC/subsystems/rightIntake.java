@@ -8,15 +8,15 @@ import com.rowanmcalpin.nextftc.ftc.hardware.ServoToPosition;
 
 import java.util.Objects;
 
-public class claw extends Subsystem {
-    public static final claw INSTANCE = new claw();
-    private claw() {}
+public class rightIntake extends Subsystem {
+    public static final rightIntake INSTANCE = new rightIntake();
+    private rightIntake() {}
     public Servo servo;
-    public String name = "claw";
+    public String name = "rightIntake";
     public String state;
 
-    public double clawOpen = 0.55;
-    public double clawClosed = 0.696;
+    public double rightIntake = 0.55;
+    public double rightNotIntaking = 0.696;
 
     @Override
     public void initialize(){
@@ -24,26 +24,26 @@ public class claw extends Subsystem {
     }
 
     @Override
-    public void periodic(){OpModeData.telemetry.addData("claw State", state);}
+    public void periodic(){OpModeData.telemetry.addData("rightIntake State", state);}
 
-    public Command open(){
-        state = "OPEN";
-        return new ServoToPosition(servo, clawOpen, this);
+    public Command intaking(){
+        state = "pushed";
+        return new ServoToPosition(servo, rightIntake, this);
     }
 
-    public Command close(){
-        state = "CLOSE";
-        return new ServoToPosition(servo, clawClosed, this);
+    public Command notIntaking(){
+        state = "notPushing";
+        return new ServoToPosition(servo, rightNotIntaking, this);
     }
     public Command setPosition(double target){
         return new ServoToPosition(servo, target, this);
     }
 
-    public Command toggle(){
+    public Command toggleIntake(){
         if (Objects.equals(state, "OPEN")){
-            return close();
+            return notIntaking();
         } else {
-            return open();
+            return intaking();
         }
     }
 }
