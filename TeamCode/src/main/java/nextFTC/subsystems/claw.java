@@ -21,7 +21,6 @@ public class claw extends Subsystem {
     @Override
     public void initialize(){
         servo = OpModeData.INSTANCE.getHardwareMap().get(Servo.class, name);
-        open();
     }
 
     @Override
