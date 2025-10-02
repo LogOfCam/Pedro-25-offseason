@@ -16,6 +16,7 @@ import com.rowanmcalpin.nextftc.pedro.PedroOpMode;
 import nextFTC.subsystems.launch;
 import nextFTC.subsystems.arm;
 import nextFTC.subsystems.colorSensor;
+import nextFTC.subsystems.leftIntake;
 import nextFTC.subsystems.rightIntake;
 import nextFTC.subsystems.touchSensor;
 
@@ -25,14 +26,16 @@ public class Teleop extends PedroOpMode {
         super(arm.INSTANCE,
                 launch.INSTANCE,
                 rightIntake.INSTANCE,
-                touchSensor.INSTANCE);
+                leftIntake.INSTANCE
+                //touchSensor.INSTANCE
+                );
     }
-    public MecanumDriverControlled driver;
-    public MotorEx frontLeft;
-    public MotorEx backLeft;
-    public MotorEx frontRight;
-    public MotorEx backRight;
-    public MotorEx[] driveMotors;
+//    public MecanumDriverControlled driver;
+//    public MotorEx frontLeft;
+//    public MotorEx backLeft;
+//    public MotorEx frontRight;
+//    public MotorEx backRight;
+//    public MotorEx[] driveMotors;
     public String lastSequence;
     public int specimenSequenceCount = 0;
     private double lastLoopTimestamp = 0.0;
@@ -40,7 +43,7 @@ public class Teleop extends PedroOpMode {
     @Override
     public void onInit() {
         colorSensor.INSTANCE.initialize(hardwareMap,telemetry);
-        mecanumDriveInit();
+        //mecanumDriveInit();
         telemetry.update();
     }
 
@@ -49,8 +52,8 @@ public class Teleop extends PedroOpMode {
 
     @Override
     public void onStartButtonPressed() {
-        driver = new MecanumDriverControlled(driveMotors, gamepadManager.getGamepad1());
-        driver.invoke();
+//        driver = new MecanumDriverControlled(driveMotors, gamepadManager.getGamepad1());
+//        driver.invoke();
         registerControls();
         arm.INSTANCE.notPushing();
     }
@@ -73,53 +76,59 @@ public class Teleop extends PedroOpMode {
     }
 
 
-    public void mecanumDriveInit() {
-        frontLeft = new MotorEx("frontLeft");
-        frontRight = new MotorEx("frontRight");
-        backLeft = new MotorEx("backLeft");
-        backRight = new MotorEx("backRight");
-
-        frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
-        frontRight.setDirection(DcMotorSimple.Direction.FORWARD);
-        backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
-        backRight.setDirection(DcMotorSimple.Direction.FORWARD);
-
-        driveMotors = new MotorEx[]{frontLeft, frontRight, backLeft, backRight};
-
-        for (MotorEx driveMotor : driveMotors) {
-            driveMotor.getMotor().setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        }
-    }
+//    public void mecanumDriveInit() {
+//        frontLeft = new MotorEx("frontLeft");
+//        frontRight = new MotorEx("frontRight");
+//        backLeft = new MotorEx("backLeft");
+//        backRight = new MotorEx("backRight");
+//
+//        frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+//        frontRight.setDirection(DcMotorSimple.Direction.FORWARD);
+//        backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+//        backRight.setDirection(DcMotorSimple.Direction.FORWARD);
+//
+//        driveMotors = new MotorEx[]{frontLeft, frontRight, backLeft, backRight};
+//
+//        for (MotorEx driveMotor : driveMotors) {
+//            driveMotor.getMotor().setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+//        }
+//    }
 
     private void registerControls() {
         //gamepadManager.getGamepad1().getRightBumper().setPressedCommand(this::specimenNextStep);
         //gamepadManager.getGamepad1().getLeftBumper().setPressedCommand(this::specimenPreviousStep);
         //gamepadManager.getGamepad1().getA().setPressedCommand(this::toggleSpeed);
-        gamepadManager.getGamepad1().getX().setReleasedCommand(arm.INSTANCE::toggle);
-        gamepadManager.getGamepad1().getX().setPressedCommand(arm.INSTANCE::toggle);
-        gamepadManager.getGamepad1().getA().setReleasedCommand(rightIntake.INSTANCE::toggleIntake);
-        gamepadManager.getGamepad1().getA().setPressedCommand(rightIntake.INSTANCE::toggleIntake);
+        gamepadManager.getGamepad2().getX().setReleasedCommand(arm.INSTANCE::toggle);
+        gamepadManager.getGamepad2().getX().setPressedCommand(arm.INSTANCE::toggle);
+        gamepadManager.getGamepad2().getDpadLeft().setReleasedCommand(leftIntake.INSTANCE::toggleIntake);
+        gamepadManager.getGamepad2().getDpadLeft().setPressedCommand(leftIntake.INSTANCE::toggleIntake);
+        gamepadManager.getGamepad2().getDpadRight().setPressedCommand(leftIntake.INSTANCE::leftDoubleSpeed);
+        gamepadManager.getGamepad2().getDpadRight().setReleasedCommand(leftIntake.INSTANCE::leftNotIntaking);
+        gamepadManager.getGamepad2().getB().setReleasedCommand(rightIntake.INSTANCE::toggleIntake);
+        gamepadManager.getGamepad2().getB().setPressedCommand(rightIntake.INSTANCE::toggleIntake);
+        gamepadManager.getGamepad2().getA().setPressedCommand(rightIntake.INSTANCE::rightDoubleSpeed);
+        gamepadManager.getGamepad2().getA().setReleasedCommand(rightIntake.INSTANCE::rightNotIntaking);
         //gamepadManager.getGamepad2().getRightBumper().setPressedCommand(this::forwardCommand);
         //gamepadManager.getGamepad2().getLeftBumper().setPressedCommand(this::backCommand);
     }
 
-    public boolean slowMode = true;
-    public Command toggleSpeed() {
-        return new SequentialGroup(
-                new InstantCommand(() -> {
-                    slowMode = !slowMode;
-                }),
-                new PassiveConditionalCommand(
-                        () -> slowMode,
-                        () -> new InstantCommand(() -> {
-                            driver.setScalar(0.2);
-                        }),
-                        () -> new InstantCommand(() -> {
-                            driver.setScalar(0.8);
-                        })
-                )
-        );
-    }
+ //   public boolean slowMode = true;
+//    public Command toggleSpeed() {
+//        return new SequentialGroup(
+//                new InstantCommand(() -> {
+//                    slowMode = !slowMode;
+//                }),
+//                new PassiveConditionalCommand(
+//                        () -> slowMode,
+//                        () -> new InstantCommand(() -> {
+//                            driver.setScalar(0.2);
+//                        }),
+//                        () -> new InstantCommand(() -> {
+//                            driver.setScalar(0.8);
+//                        })
+//                )
+//        );
+//    }
 
 //    private int step = 0; // Tracks current step
 //
