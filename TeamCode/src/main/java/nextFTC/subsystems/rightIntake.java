@@ -36,6 +36,9 @@ public class rightIntake extends Subsystem {
         state = "notPushing";
         return new ServoToPosition(servo, rightNotIntaking, this);
     }
+    public Command rightNotIntaking2(){
+        return new ServoToPosition(servo, rightNotIntaking, this);
+    }
     public Command rightDoubleSpeed(){
         return new ServoToPosition(servo, rightDoubleSpeed, this);
     }
@@ -44,7 +47,7 @@ public class rightIntake extends Subsystem {
     }
 
     public Command toggleIntake(){
-        if (Objects.equals(state, "OPEN")){
+        if (Objects.equals(state, "pushed")){
             return rightNotIntaking();
         } else {
             return rightIntaking();

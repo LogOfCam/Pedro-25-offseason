@@ -99,15 +99,15 @@ public class Teleop extends PedroOpMode {
         //gamepadManager.getGamepad1().getLeftBumper().setPressedCommand(this::specimenPreviousStep);
         //gamepadManager.getGamepad1().getA().setPressedCommand(this::toggleSpeed);
         gamepadManager.getGamepad2().getX().setReleasedCommand(arm.INSTANCE::toggle);
-        gamepadManager.getGamepad2().getX().setPressedCommand(arm.INSTANCE::toggle);
+        gamepadManager.getGamepad2().getX().setHeldCommand(arm.INSTANCE::toggle);
         gamepadManager.getGamepad2().getDpadLeft().setReleasedCommand(leftIntake.INSTANCE::toggleIntake);
-        gamepadManager.getGamepad2().getDpadLeft().setPressedCommand(leftIntake.INSTANCE::toggleIntake);
-        gamepadManager.getGamepad2().getDpadRight().setPressedCommand(leftIntake.INSTANCE::leftDoubleSpeed);
-        gamepadManager.getGamepad2().getDpadRight().setReleasedCommand(leftIntake.INSTANCE::leftNotIntaking);
+        gamepadManager.getGamepad2().getDpadLeft().setHeldCommand(leftIntake.INSTANCE::toggleIntake);
+        gamepadManager.getGamepad2().getDpadRight().setHeldCommand(leftIntake.INSTANCE::leftDoubleSpeed);
+        gamepadManager.getGamepad2().getDpadRight().setReleasedCommand(leftIntake.INSTANCE::leftNotIntaking2);
         gamepadManager.getGamepad2().getB().setReleasedCommand(rightIntake.INSTANCE::toggleIntake);
-        gamepadManager.getGamepad2().getB().setPressedCommand(rightIntake.INSTANCE::toggleIntake);
-        gamepadManager.getGamepad2().getA().setPressedCommand(rightIntake.INSTANCE::rightDoubleSpeed);
-        gamepadManager.getGamepad2().getA().setReleasedCommand(rightIntake.INSTANCE::rightNotIntaking);
+        gamepadManager.getGamepad2().getB().setHeldCommand(rightIntake.INSTANCE::toggleIntake);
+        gamepadManager.getGamepad2().getA().setHeldCommand(rightIntake.INSTANCE::rightDoubleSpeed);
+        gamepadManager.getGamepad2().getA().setReleasedCommand(rightIntake.INSTANCE::rightNotIntaking2);
         //gamepadManager.getGamepad2().getRightBumper().setPressedCommand(this::forwardCommand);
         //gamepadManager.getGamepad2().getLeftBumper().setPressedCommand(this::backCommand);
     }

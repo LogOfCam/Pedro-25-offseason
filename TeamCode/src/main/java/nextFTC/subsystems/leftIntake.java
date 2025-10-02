@@ -36,6 +36,9 @@ public class leftIntake extends Subsystem {
         state = "notPushing";
         return new ServoToPosition(servo, leftNotIntaking, this);
     }
+    public Command leftNotIntaking2(){
+        return new ServoToPosition(servo, leftNotIntaking, this);
+    }
     public Command leftDoubleSpeed(){
         return new ServoToPosition(servo, leftDoubleSpeed, this);
     }
