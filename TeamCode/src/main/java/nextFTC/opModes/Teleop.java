@@ -28,9 +28,10 @@ public class Teleop extends PedroOpMode {
                 rightIntake.INSTANCE,
                 leftIntake.INSTANCE
                 //touchSensor.INSTANCE
-                );
+        );
     }
-//    public MecanumDriverControlled driver;
+
+    //   public MecanumDriverControlled driver;
 //    public MotorEx frontLeft;
 //    public MotorEx backLeft;
 //    public MotorEx frontRight;
@@ -42,37 +43,49 @@ public class Teleop extends PedroOpMode {
 
     @Override
     public void onInit() {
-        colorSensor.INSTANCE.initialize(hardwareMap,telemetry);
+        colorSensor.INSTANCE.initialize(hardwareMap, telemetry);
         //mecanumDriveInit();
         telemetry.update();
     }
 
     @Override
-    public void onWaitForStart() {}
+    public void onWaitForStart() {
+    }
 
     @Override
     public void onStartButtonPressed() {
 //        driver = new MecanumDriverControlled(driveMotors, gamepadManager.getGamepad1());
 //        driver.invoke();
         registerControls();
-        arm.INSTANCE.notPushing();
     }
 
     @Override
     public void onUpdate() {
         colorSensor.INSTANCE.periodic();
         if (gamepad1.a) {
-            launch.INSTANCE.setPower(launch.setPower);
-        } else {
-            launch.INSTANCE.setPower(0);
-        }
-        if (lastLoopTimestamp == 0.0) {
-            lastLoopTimestamp = System.nanoTime() / 1E9;
-        }
+            launch.INSTANCE.sevenPower(launch.sevenPower);
+        } else if
+             (gamepad1.x) {
+                launch.INSTANCE.sixPower(launch.sixPower);
+            } else if
+                 (gamepad1.b) {
+                    launch.INSTANCE.eightPower(launch.eightPower);
+                } else if
+                     (gamepad1.y) {
+                        launch.INSTANCE.ninePower(launch.ninePower);
+                    } else if
+                         (gamepad1.dpad_up) {
+                            launch.INSTANCE.fivePower(launch.fivePower);
+                        } else {
+                            launch.INSTANCE.zeroPower(0);
+                        }
+                        if (lastLoopTimestamp == 0.0) {
+                            lastLoopTimestamp = System.nanoTime() / 1E9;
+                        }
 
-        OpModeData.telemetry.addData("Loop time", (System.nanoTime() / 1E9) - lastLoopTimestamp);
-        lastLoopTimestamp = System.nanoTime() / 1E9;
-        OpModeData.telemetry.update();
+                        OpModeData.telemetry.addData("Loop time", (System.nanoTime() / 1E9) - lastLoopTimestamp);
+                        lastLoopTimestamp = System.nanoTime() / 1E9;
+                        OpModeData.telemetry.update();
     }
 
 
@@ -94,25 +107,25 @@ public class Teleop extends PedroOpMode {
 //        }
 //    }
 
-    private void registerControls() {
-        //gamepadManager.getGamepad1().getRightBumper().setPressedCommand(this::specimenNextStep);
-        //gamepadManager.getGamepad1().getLeftBumper().setPressedCommand(this::specimenPreviousStep);
-        //gamepadManager.getGamepad1().getA().setPressedCommand(this::toggleSpeed);
-        gamepadManager.getGamepad2().getX().setReleasedCommand(arm.INSTANCE::toggle);
-        gamepadManager.getGamepad2().getX().setHeldCommand(arm.INSTANCE::toggle);
-        gamepadManager.getGamepad2().getDpadLeft().setReleasedCommand(leftIntake.INSTANCE::toggleIntake);
-        gamepadManager.getGamepad2().getDpadLeft().setHeldCommand(leftIntake.INSTANCE::toggleIntake);
-        gamepadManager.getGamepad2().getDpadRight().setHeldCommand(leftIntake.INSTANCE::leftDoubleSpeed);
-        gamepadManager.getGamepad2().getDpadRight().setReleasedCommand(leftIntake.INSTANCE::leftNotIntaking2);
-        gamepadManager.getGamepad2().getB().setReleasedCommand(rightIntake.INSTANCE::toggleIntake);
-        gamepadManager.getGamepad2().getB().setHeldCommand(rightIntake.INSTANCE::toggleIntake);
-        gamepadManager.getGamepad2().getA().setHeldCommand(rightIntake.INSTANCE::rightDoubleSpeed);
-        gamepadManager.getGamepad2().getA().setReleasedCommand(rightIntake.INSTANCE::rightNotIntaking2);
-        //gamepadManager.getGamepad2().getRightBumper().setPressedCommand(this::forwardCommand);
-        //gamepadManager.getGamepad2().getLeftBumper().setPressedCommand(this::backCommand);
-    }
+                    private void registerControls() {
+                        //gamepadManager.getGamepad1().getRightBumper().setPressedCommand(this::specimenNextStep);
+                        //gamepadManager.getGamepad1().getLeftBumper().setPressedCommand(this::specimenPreviousStep);
+                        //gamepadManager.getGamepad1().getA().setPressedCommand(this::toggleSpeed);
+                        gamepadManager.getGamepad2().getX().setReleasedCommand(arm.INSTANCE::toggle);
+                        gamepadManager.getGamepad2().getX().setHeldCommand(arm.INSTANCE::toggle);
+                        gamepadManager.getGamepad2().getDpadLeft().setReleasedCommand(leftIntake.INSTANCE::toggleIntake);
+                        gamepadManager.getGamepad2().getDpadLeft().setHeldCommand(leftIntake.INSTANCE::toggleIntake);
+                        gamepadManager.getGamepad2().getDpadRight().setHeldCommand(leftIntake.INSTANCE::leftDoubleSpeed);
+                        gamepadManager.getGamepad2().getDpadRight().setReleasedCommand(leftIntake.INSTANCE::leftNotIntaking2);
+                        gamepadManager.getGamepad2().getB().setReleasedCommand(rightIntake.INSTANCE::toggleIntake);
+                        gamepadManager.getGamepad2().getB().setHeldCommand(rightIntake.INSTANCE::toggleIntake);
+                        gamepadManager.getGamepad2().getA().setHeldCommand(rightIntake.INSTANCE::rightDoubleSpeed);
+                        gamepadManager.getGamepad2().getA().setReleasedCommand(rightIntake.INSTANCE::rightNotIntaking2);
+                        //gamepadManager.getGamepad2().getRightBumper().setPressedCommand(this::forwardCommand);
+                        //gamepadManager.getGamepad2().getLeftBumper().setPressedCommand(this::backCommand);
+                    }
 
- //   public boolean slowMode = true;
+                    //   public boolean slowMode = true;
 //    public Command toggleSpeed() {
 //        return new SequentialGroup(
 //                new InstantCommand(() -> {
@@ -137,4 +150,5 @@ public class Teleop extends PedroOpMode {
 //                .add(OuttakeSlide.INSTANCE.highBasket())
 //                .add(OuttakeSlide.INSTANCE.transfer());
 //    }
-}
+
+            }
