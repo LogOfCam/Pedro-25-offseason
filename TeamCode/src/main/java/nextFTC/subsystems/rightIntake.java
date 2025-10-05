@@ -28,12 +28,12 @@ public class rightIntake extends Subsystem {
     public void periodic(){OpModeData.telemetry.addData("rightIntake State", state);}
 
     public Command rightIntaking(){
-        state = "pushed";
+        state = "intaking";
         return new ServoToPosition(servo, rightIntake, this);
     }
 
     public Command rightNotIntaking(){
-        state = "notPushing";
+        state = "notIntaking";
         return new ServoToPosition(servo, rightNotIntaking, this);
     }
     public Command rightNotIntaking2(){
@@ -42,12 +42,15 @@ public class rightIntake extends Subsystem {
     public Command rightDoubleSpeed(){
         return new ServoToPosition(servo, rightDoubleSpeed, this);
     }
+    public void moveServoToPosition(double position) {
+        servo.setPosition(position);
+    }
     public Command setPosition(double target){
         return new ServoToPosition(servo, target, this);
     }
 
     public Command toggleIntake(){
-        if (Objects.equals(state, "pushed")){
+        if (Objects.equals(state, "intaking")){
             return rightNotIntaking();
         } else {
             return rightIntaking();
