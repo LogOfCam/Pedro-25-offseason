@@ -7,7 +7,6 @@ import com.rowanmcalpin.nextftc.core.command.Command;
 import com.rowanmcalpin.nextftc.core.command.groups.SequentialGroup;
 import com.rowanmcalpin.nextftc.core.command.utility.InstantCommand;
 import com.rowanmcalpin.nextftc.core.command.utility.conditionals.PassiveConditionalCommand;
-import com.rowanmcalpin.nextftc.core.command.utility.statemachine.AdvancingCommand;
 import com.rowanmcalpin.nextftc.ftc.OpModeData;
 import com.rowanmcalpin.nextftc.ftc.driving.MecanumDriverControlled;
 import com.rowanmcalpin.nextftc.ftc.hardware.controllables.MotorEx;
@@ -19,7 +18,6 @@ import nextFTC.subsystems.arm;
 import nextFTC.subsystems.colorSensor;
 import nextFTC.subsystems.leftIntake;
 import nextFTC.subsystems.rightIntake;
-import nextFTC.subsystems.touchSensor;
 
 @TeleOp(name = "ClipBot")
 public class Teleop extends PedroOpMode {
@@ -32,12 +30,12 @@ public class Teleop extends PedroOpMode {
         );
     }
 
-    //   public MecanumDriverControlled driver;
-//    public MotorEx frontLeft;
-//    public MotorEx backLeft;
-//    public MotorEx frontRight;
-//    public MotorEx backRight;
-//    public MotorEx[] driveMotors;
+       public MecanumDriverControlled driver;
+    public MotorEx frontLeft;
+    public MotorEx backLeft;
+    public MotorEx frontRight;
+    public MotorEx backRight;
+    public MotorEx[] driveMotors;
     private double lastLoopTimestamp = 0.0;
     private int step = 0;
     private boolean lastRightBumper = false;
@@ -46,7 +44,7 @@ public class Teleop extends PedroOpMode {
     @Override
     public void onInit() {
         colorSensor.INSTANCE.initialize(hardwareMap, telemetry);
-        //mecanumDriveInit();
+        mecanumDriveInit();
         telemetry.update();
     }
 
@@ -56,8 +54,8 @@ public class Teleop extends PedroOpMode {
 
     @Override
     public void onStartButtonPressed() {
-//        driver = new MecanumDriverControlled(driveMotors, gamepadManager.getGamepad1());
-//        driver.invoke();
+        driver = new MecanumDriverControlled(driveMotors, gamepadManager.getGamepad1());
+        driver.invoke();
         registerControls();
     }
 
@@ -96,42 +94,42 @@ public class Teleop extends PedroOpMode {
         if (lastLoopTimestamp == 0.0) {
             lastLoopTimestamp = System.nanoTime() / 1E9;
         }
-
         OpModeData.telemetry.addData("Loop time", (System.nanoTime() / 1E9) - lastLoopTimestamp);
         lastLoopTimestamp = System.nanoTime() / 1E9;
         OpModeData.telemetry.update();
     }
 
 
-//    public void mecanumDriveInit() {
-//        frontLeft = new MotorEx("frontLeft");
-//        frontRight = new MotorEx("frontRight");
-//        backLeft = new MotorEx("backLeft");
-//        backRight = new MotorEx("backRight");
-//
-//        frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
-//        frontRight.setDirection(DcMotorSimple.Direction.FORWARD);
-//        backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
-//        backRight.setDirection(DcMotorSimple.Direction.FORWARD);
-//
-//        driveMotors = new MotorEx[]{frontLeft, frontRight, backLeft, backRight};
-//
-//        for (MotorEx driveMotor : driveMotors) {
-//            driveMotor.getMotor().setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-//        }
-//    }
+    public void mecanumDriveInit() {
+        frontLeft = new MotorEx("frontLeft");
+        frontRight = new MotorEx("frontRight");
+        backLeft = new MotorEx("backLeft");
+        backRight = new MotorEx("backRight");
+        frontLeft.setDirection(DcMotorSimple.Direction.FORWARD);
+        frontRight.setDirection(DcMotorSimple.Direction.FORWARD);
+        backLeft.setDirection(DcMotorSimple.Direction.FORWARD);
+        backRight.setDirection(DcMotorSimple.Direction.FORWARD);
+
+        driveMotors = new MotorEx[]{frontLeft, frontRight, backLeft, backRight};
+
+        for (MotorEx driveMotor : driveMotors) {
+            driveMotor.getMotor().setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        }
+    }
 
     private void registerControls() {
-        gamepadManager.getGamepad2().getX().setReleasedCommand(arm.INSTANCE::toggle);
-        gamepadManager.getGamepad2().getX().setHeldCommand(arm.INSTANCE::toggle);
+//        gamepadManager.getGamepad1().getLeftTrigger().setReleasedCommand(driver.INSTANT::driveToggle);
+//        gamepadManager.getGamepad1().getLeftTrigger().setHeldCommand(driver.INSTANCE::driveToggle);
+        gamepadManager.getGamepad2().getDpadUp().setReleasedCommand(arm.INSTANCE::pushed);
+        gamepadManager.getGamepad2().getDpadUp().setHeldCommand(arm.INSTANCE::notPushing);
         gamepadManager.getGamepad2().getDpadLeft().setReleasedCommand(leftIntake.INSTANCE::toggleIntake);
         gamepadManager.getGamepad2().getDpadLeft().setHeldCommand(leftIntake.INSTANCE::toggleIntake);
         gamepadManager.getGamepad2().getDpadRight().setHeldCommand(leftIntake.INSTANCE::leftDoubleSpeed);
         gamepadManager.getGamepad2().getDpadRight().setReleasedCommand(leftIntake.INSTANCE::leftNotIntaking2);
-        gamepadManager.getGamepad2().getB().setReleasedCommand(rightIntake.INSTANCE::toggleIntake);
-        gamepadManager.getGamepad2().getB().setHeldCommand(rightIntake.INSTANCE::toggleIntake);
-        gamepadManager.getGamepad2().getA().setHeldCommand(rightIntake.INSTANCE::rightDoubleSpeed);
-        gamepadManager.getGamepad2().getA().setReleasedCommand(rightIntake.INSTANCE::rightNotIntaking2);
+        gamepadManager.getGamepad2().getLeftBumper().setReleasedCommand(rightIntake.INSTANCE::toggleIntake);
+        gamepadManager.getGamepad2().getLeftBumper().setHeldCommand(rightIntake.INSTANCE::toggleIntake);
+        gamepadManager.getGamepad2().getY().setHeldCommand(rightIntake.INSTANCE::rightDoubleSpeed);
+        gamepadManager.getGamepad2().getY().setReleasedCommand(rightIntake.INSTANCE::rightNotIntaking2);
 
     }
 

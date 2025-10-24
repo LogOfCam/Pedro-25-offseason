@@ -16,8 +16,8 @@ public class launch extends Subsystem {
 
     private MotorEx motor;
     public static double sevenPower = 0.7;
-    public static double fivePower = 0.5;
     public static double sixPower = 0.6;
+    public static double fivePower = 0.5;
     public static double eightPower = 0.8;
     public static double ninePower = 0.9;
     public static double zeroPower = 0.0;

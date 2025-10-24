@@ -23,27 +23,15 @@ public class arm extends Subsystem {
         servo = OpModeData.INSTANCE.getHardwareMap().get(Servo.class, name);
     }
 
-    @Override
-    public void periodic(){OpModeData.telemetry.addData("arm State", state);}
-
-    public Command pushing(){
-        state = "pushed";
+    public Command pushed(){
         return new ServoToPosition(servo, armPushed, this);
     }
 
     public Command notPushing(){
-        state = "notPushing";
         return new ServoToPosition(servo, armNotPushed, this);
     }
     public Command setPosition(double target){
         return new ServoToPosition(servo, target, this);
     }
 
-    public Command toggle(){
-        if (Objects.equals(state, "OPEN")){
-            return notPushing();
-        } else {
-            return pushing();
-        }
-    }
 }
